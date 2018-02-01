@@ -1,0 +1,133 @@
+/*
+ *  This file is part of The Unnamed Game.
+ *
+ *  The Unnamed Game is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Foobar is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with The Unnamed Game.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.container {
+  display: flex;
+  flex-flow: row;
+  min-height: 50px;  
+}
+
+.leftBar { // all height inherited from this height
+  flex: 0;
+  width: 138px;
+  min-width: 138px;
+  max-width: 138px;
+  height: 100vh;
+  color: white;
+  padding-left: 4px;
+	padding-right: 4px;
+  background-color: #134B13;
+}
+
+.main {
+  height: 100vh;
+  width: 85%;
+  background-color: #0E260E;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.col {
+  margin: 2px;
+}
+
+.topBtns {
+  background: #134B13;
+  flex-direction: column;
+  flex: 1;
+}
+
+.output {
+  background: #50A850;
+  flex-direction: column;
+  flex: 16;
+  padding-left: 4px;
+  padding-right: 4px;
+  overflow-y: scroll;
+}
+
+.botBtns {
+  background: #134B13;
+  flex-direction: column;
+  flex: 2;
+/*  padding: 4px;*/
+  color: white;
+}
+
+.rightBar {
+  flex:2;
+  width: 138px;
+  min-width: 138px;
+  max-width: 138px;
+  padding-left: 4px;
+  padding-right: 4px;
+  color: white;
+  background-color: #134B13;
+}
+
+.ribbonBtn {
+/*  display: flex;
+  flex-direction: column;
+  flex: 1;*/
+  height: 100%;
+  width: 100%;
+}
+
+.topRibbonCell {
+/*  table-layout: fixed;*/
+  width: 16.66%;
+  height: 100%;
+}
+
+#settings {
+  margin-left: 14%;
+  width: 86%;
+}
+
+button, select{
+  background-color: #50A850;
+  color: white;
+  border-spacing: 3px 3px;
+  border: 3px outset #50A850;
+  border-top-style: solid;
+  border-left-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-top-color: #50A850;
+  border-left-color: #50A850;
+  border-bottom-color: #285428;
+  border-right-color: #285428;
+}
+
+button:active {
+  border-bottom-color: #50A850;
+  border-right-color: #50A850;
+  border-top-color: #285428;
+  border-left-color: #285428;
+}
