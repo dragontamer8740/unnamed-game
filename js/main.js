@@ -44,6 +44,13 @@ function append(str)
   $().innerHTML+=str;
 }
 
+// appends image with path str to output.
+function appendImg(str)
+{
+  str="<img src=" + str + "></img>";
+  $().innerHTML+=str;
+}
+
 function btn(num)
 {
 /* get button number "num"'s element and return it.*/
@@ -80,9 +87,11 @@ function mainMenu()
 {
   showButton(1, true);
   setButtonText(1, "New Game");
-  write("Hello world! This text was generated and placed by Javascript! :O ...well, it's a start, anyway. Now I technically have a backend and can write arbitrary text to the main output form. And look, it even wraps!\n\nNewlines work too!\n\n    And indentation as well!\n\nNow if only I could find a nicer color scheme for legibility that wasn't black on white or white on black.\nAll of this output so far was printed with the write() function!");
-  append("\n\nThis text was appended with a separate function intended for tacking on strings: append()!")
-  append("\n\nTesting some text effects!\n<b>BAM</b>\n<i>Pow!</i>\n<red>Zoom!</red> <blue>fizz!</blue>\n<yellow>Snap!</yellow> <orange>Crackle!</orange> <pink>Pop!</pink>(tm)\n<b><i><purple>SMAAAASH!</purple></i></b>\n\n\n<white>If you can read this, you don't need glasses.</white>");
+  write("Hello world! This text was generated and placed by Javascript! :O ...well, it's a start, anyway. Now I technically have a backend and can write arbitrary text to the main output form. And look, it even wraps!\nNewlines work too!\n    And indentation as well!\n\nNow if only I could find a nicer color scheme for legibility that wasn't black on white or white on black.\nAll of this output so far was printed with the write() function!");
+  append("\nThis text was appended with a separate function intended for tacking on strings: append()!")
+  append("\n\nTesting images:\n");
+  appendImg("img/test.png");
+  append("\n\nTesting some text effects!\n<b>BAM</b>\n<i>Pow!</i>\n<red>Zoom!</red> <blue>fizz!</blue>\n<yellow>Snap!</yellow> <orange>Crackle!</orange> <pink>Pop!</pink>(tm)\n<b><i><purple>SMAAAASH!</purple></i></b>\n<white>If you can read this, you don't need glasses.</white>");
 }
 
 function main()
