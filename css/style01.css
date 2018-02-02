@@ -40,7 +40,7 @@ body {
   height: 100vh;
   color: white;
   padding-left: 4px;
-	padding-right: 4px;
+  padding-right: 4px;
   background-color: #134B13;
 }
 
@@ -64,12 +64,15 @@ body {
 }
 
 .output {
-  background: #50A850;
+  background: #60A372;
+  color: black;
+  text-shadow: 1px 1px #AAAAAA;
   flex-direction: column;
   flex: 16;
   padding-left: 4px;
   padding-right: 4px;
   overflow-y: scroll;
+  white-space: pre-wrap;
 }
 
 .botBtns {
@@ -130,4 +133,29 @@ button:active {
   border-right-color: #50A850;
   border-top-color: #285428;
   border-left-color: #285428;
+}
+
+red {
+  color: red;
+}
+blue {
+  color: blue;
+}
+yellow {
+  color: yellow;
+}
+white {
+  color: white;
+}
+pink {
+  color: LightPink;
+}
+purple {
+  color: purple;
+}
+orange {
+  color: orange;
+}
+black {
+  color: black;
 }
