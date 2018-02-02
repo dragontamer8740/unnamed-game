@@ -81,6 +81,7 @@ body {
   flex: 2;
 /*  padding: 4px;*/
   color: white;
+  margin:0px;
 }
 
 .rightBar {
@@ -95,17 +96,36 @@ body {
 }
 
 .ribbonBtn {
-/*  display: flex;
-  flex-direction: column;
   flex: 1;*/
   height: 100%;
   width: 100%;
 }
 
+.ribbonBtnBot {
+  flex-direction: column;
+  flex: 1;*/
+  height: 5vh;
+  min-height: 5vh;
+  max-height: 5vh;
+  width: 100%;
+  overflow: hidden;
+  border-top-width: 0px;
+  flex: 1;
+/* hide buttons until buttons are made visible by scripting
+   (use "display: inline;" to make them visible). */
+  display:none;
+}
+
 .topRibbonCell {
-/*  table-layout: fixed;*/
   width: 16.66%;
   height: 100%;
+}
+
+.botRibbonCell {
+  width: 16.66%;
+  flex: 1;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 #settings {
