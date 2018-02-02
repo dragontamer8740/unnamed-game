@@ -41,13 +41,15 @@ body {
   color: white;
   padding-left: 4px;
   padding-right: 4px;
-  background-color: #134B13;
+  background-color: #3128B5;
 }
 
 .main {
   height: 100vh;
   width: 85%;
-  background-color: #0E260E;
+  /* color seen in boundaries between regions of the screen */
+/*  background-color: #3128B5;*/
+  background-color: #3128B5;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -58,15 +60,19 @@ body {
 }
 
 .topBtns {
-  background: #134B13;
+  background: #3128B5;
   flex-direction: column;
   flex: 1;
 }
 
 .output {
-  background: #60A372;
+  background: #8C8AE7;
+/*  color: white;*/
+/*  color: #8C8AE7;*/
   color: black;
-  text-shadow: 1px 1px #AAAAAA;
+/*  text-shadow: 1px 1px white;*/
+/*  text-shadow: 1px 1px #2A2A2A;*/
+/*  text-shadow: 1px 1px #AAAAAA;*/
   flex-direction: column;
   flex: 16;
   padding-left: 4px;
@@ -76,7 +82,7 @@ body {
 }
 
 .botBtns {
-  background: #134B13;
+  background: #3128B5;
   flex-direction: column;
   flex: 2;
 /*  padding: 4px;*/
@@ -91,7 +97,7 @@ body {
   padding-left: 4px;
   padding-right: 4px;
   color: white;
-  background-color: #134B13;
+  background-color: #3128B5;
 }
 
 .ribbonBtn {
@@ -114,27 +120,27 @@ body {
 }
 
 button, select{
-  background-color: #50A850;
+  background-color: #8C8AE7;
+/*  background-color: #50A850;*/
   color: white;
   text-shadow: 1px 1px black;
-  text-shadow: 1px 1px black;
   border-spacing: 3px 3px;
-  border: 3px outset #50A850;
+  border: 3px outset #8C8AE7;
   border-top-style: solid;
   border-left-style: solid;
   border-right-style: solid;
   border-bottom-style: solid;
-  border-top-color: #50A850;
-  border-left-color: #50A850;
-  border-bottom-color: #285428;
-  border-right-color: #285428;
+  border-top-color: #9F9DE7;
+  border-left-color: #9F9DE7;
+  border-bottom-color: #3128B5;
+  border-right-color: #3128B5;
 }
 
 button:active {
-  border-bottom-color: #50A850;
-  border-right-color: #50A850;
-  border-top-color: #285428;
-  border-left-color: #285428;
+  border-bottom-color: #9F9DE7;
+  border-right-color: #9F9DE7;
+  border-top-color: #3128B5;
+  border-left-color: #3128B5;
 }
 
 red {
