@@ -28,23 +28,25 @@ function setupScreen()
   saveSelBtn.add(saveOpt2, null);
 }
 
-/* Since I won't use JQuery, I can do this for shorthand to access output */
+/* Since I won't use JQuery (which uses '$()'), I can do this as shorthand to access output. */
 function $()
 {
   return document.getElementById("stdout");
 }
 
+/* erase all output and write a new page */
 function write(str)
 {
   $().innerHTML=str;
 }
 
+/* write to the output, preserving existing content. */
 function append(str)
 {
   $().innerHTML+=str;
 }
 
-// appends image with path str to output.
+/* append image with path str to output. Remember to use relative paths!*/
 function appendImg(str)
 {
   str="<img src=" + str + "></img>";

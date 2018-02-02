@@ -60,6 +60,7 @@ body {
 .topBtns {
   background: #134B13;
   flex-direction: column;
+  margin-bottom: 0px;
   flex: 1;
 }
 
