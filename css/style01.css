@@ -159,11 +159,11 @@ button:active {
 }
 
 .statBar {
-  padding-left: 2px;
-  padding-right: 2px;
+/*  padding-left: 2px;
+  padding-right: 2px;*/
   padding-top: 2%;
   padding-bottom: 2%;
-  height: 10%;
+  height: 6%;
   width: 100%;
 }
 .statBar > text {
