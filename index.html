@@ -6,7 +6,7 @@
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    Foobar is distributed in the hope that it will be useful,
+    The Unnamed Game is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
@@ -14,6 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with The Unnamed Game.  If not, see <http://www.gnu.org/licenses/>.
 -->
+
 <html>
   <head>
     <link rel="stylesheet" href="css/style01.css"></link>
@@ -21,87 +22,97 @@
   </head>
   <body onload="main();">
     <div class="container">
-      <nav class="nav leftBar">left bar</nav>
-        <section class="main">
-          <div class="col topBtns">
-            <table style="width: 100%; height: 100%;">
-              <tr>
-                <td class="topRibbonCell">
-                  <select id="saveSelect" class="ribbonBtn">
-                  </select>
-                </td>
-                <td class="topRibbonCell">
-                  <button type="button" id="save" class="ribbonBtn">Save</button>
-                </td>
-                <td class="topRibbonCell">
-                  <button type="button" id="load" class="ribbonBtn">Load</button>
-                </td>
-                <td class="topRibbonCell">
-                  <button type="button" id="saveFile" class="ribbonBtn">Save to file</button>
-                </td>
-                <td class="topRibbonCell">
-                  <button type="button" id="loadFile" class="ribbonBtn">Load from file</button>
-                </td>
-                <td class="topRibbonCell">
-                  <button type="button" id="settings" class="ribbonBtn">Settings...</button>
-                </td>
-              </tr>
-            </table>
-          </div> <!--topBtns-->
+      <nav class="nav leftBar">
+        Stats
+        <br/>
+        <svg class="statBar" id="levelBar" viewBox="0 0 100 100"><rect id="bar" height="100%"/><text class="barStr" id="levelBarStr" x="0%" y="75%" style="text-align: left;">Level</text><text id="levelBarNum" class="barNum" x="100%" y="75%" font-size="smaller" fill="black">Num</text></svg>
+        <br/>
+        <svg id="HPSvg"></svg>
+        <br/>
+      </nav>
+      <section class="main">
+        <div class="col topBtns">
+          <table style="width: 100%; height: 100%;">
+            <tr>
+              <td class="topRibbonCell">
+                <select id="saveSelect" class="ribbonBtn">
+                </select>
+              </td>
+              <td class="topRibbonCell">
+                <button type="button" id="save" class="ribbonBtn">Save</button>
+              </td>
+              <td class="topRibbonCell">
+                <button type="button" id="load" class="ribbonBtn">Load</button>
+              </td>
+              <td class="topRibbonCell">
+                <button type="button" id="saveFile" class="ribbonBtn">Save to file</button>
+              </td>
+              <td class="topRibbonCell">
+                <button type="button" id="loadFile" class="ribbonBtn">Load from file</button>
+              </td>
+              <td class="topRibbonCell">
+                <button type="button" id="settings" class="ribbonBtn">Settings...</button>
+              </td>
+            </tr>
+          </table>
+        </div> <!-- /col topBtns -->
 
-          <!-- OUTPUT WINDOW -->
-          <!-- All primary output will go here! -->
-          <!-- borrowing the 'stdout' convention from Unix and C -->
-          <div id="stdout" class="col output"></div>
+        <!-- OUTPUT WINDOW -->
+        <!-- All primary output will go here! -->
+        <!-- borrowing the 'stdout' convention from Unix and C -->
+        <div id="stdout" class="col output">You'll need to have JavaScript enabled for this page to function properly. Sorry.
 
+Also it probably isn't gonna work like you expect it to if you're using some obscure browser like Netsurf or Lynx or Internet Exploder 8, because I use a lot of modern CSS features and Javascript from this millenium.
 
-          <!-- bottom buttons -->
-          <div class="col botBtns">
-            <table style="width: 100%; height: 100%;">
-              <tr style="height: 5vh;">
-                <td class="botRibbonCell">
-                  <button type="button" id="btn1" class="ribbonBtnBot">Button 1</button>
-                </td>
-                <td class="botRibbonCell">
-                  <button type="button" id="btn2" class="ribbonBtnBot">Button 2</button>
-                </td>
-                <td class="botRibbonCell">
-                  <button type="button" id="btn3" class="ribbonBtnBot">Button 3</button>
-                </td>
-                <td class="botRibbonCell">
-                  <button type="button" id="btn4" class="ribbonBtnBot">Button 4</button>
-                </td>
-                <td class="botRibbonCell">
-                  <button type="button" id="btn5" class="ribbonBtnBot">Button 5</button>
-                </td>
-                <td class="botRibbonCell">
-                  <button type="button" id="btn6" class="ribbonBtnBot">Button 6</button>
-                </td>
-              </tr>
-              <tr style="height: 5vh;">
-                <td class="botRibbonCell">
-                  <button type="button" id="btn7" class="ribbonBtnBot">Button 7</button>
-                </td>
-                <td class="botRibbonCell">
-                  <button type="button" id="btn8" class="ribbonBtnBot">Button 8</button>
-                </td>
-                <td class="botRibbonCell">
-                  <button type="button" id="btn9" class="ribbonBtnBot">Button 9</button>
-                </td>
-                <td class="botRibbonCell">
-                  <button type="button" id="btn10" class="ribbonBtnBot">Button 10</button>
-                </td>
-                <td class="botRibbonCell">
-                  <button type="button" id="btn11" class="ribbonBtnBot">Button 11</button>
-                </td>
-                <td class="botRibbonCell">
-                  <button type="button" id="btn12" class="ribbonBtnBot">Button 12</button>
-                </td>
+Let me know if it does, though!
 
-              </tr>
-            </table>
-					</div>
-        </section>
+I'm interested to know what you did I and hope that it's because Netsurf is coming along swimmingly.</div>
+        <!-- bottom buttons -->
+        <div class="col botBtns">
+          <table style="width: 100%; height: 100%;">
+            <tr style="height: 5vh;">
+              <td class="botRibbonCell">
+                <button type="button" id="btn1" class="ribbonBtnBot">Button 1</button>
+              </td>
+              <td class="botRibbonCell">
+                <button type="button" id="btn2" class="ribbonBtnBot">Button 2</button>
+              </td>
+              <td class="botRibbonCell">
+                <button type="button" id="btn3" class="ribbonBtnBot">Button 3</button>
+              </td>
+              <td class="botRibbonCell">
+                <button type="button" id="btn4" class="ribbonBtnBot">Button 4</button>
+              </td>
+              <td class="botRibbonCell">
+                <button type="button" id="btn5" class="ribbonBtnBot">Button 5</button>
+              </td>
+              <td class="botRibbonCell">
+                <button type="button" id="btn6" class="ribbonBtnBot">Button 6</button>
+              </td>
+            </tr>
+            <tr style="height: 5vh;">
+              <td class="botRibbonCell">
+                <button type="button" id="btn7" class="ribbonBtnBot">Button 7</button>
+              </td>
+              <td class="botRibbonCell">
+                <button type="button" id="btn8" class="ribbonBtnBot">Button 8</button>
+              </td>
+              <td class="botRibbonCell">
+                <button type="button" id="btn9" class="ribbonBtnBot">Button 9</button>
+              </td>
+              <td class="botRibbonCell">
+                <button type="button" id="btn10" class="ribbonBtnBot">Button 10</button>
+              </td>
+              <td class="botRibbonCell">
+                <button type="button" id="btn11" class="ribbonBtnBot">Button 11</button>
+              </td>
+              <td class="botRibbonCell">
+                <button type="button" id="btn12" class="ribbonBtnBot">Button 12</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </section>
 <!-- if I want a bar on the right: -->
       <nav class="nav rightBar">right bar</nav>
     </div>

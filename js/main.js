@@ -6,7 +6,7 @@
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Foobar is distributed in the hope that it will be useful,
+ *  The Unnamed Game is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
@@ -17,6 +17,8 @@
 
 function setupScreen()
 {
+  /* Clear screen of 'please enable javascript' text */
+  write("");
   var saveSelBtn = document.getElementById("saveSelect");
   var saveOpt1 = document.createElement("option");
   var saveOpt2 = document.createElement("option");
@@ -85,11 +87,17 @@ function hideAllButtons()
   }
 }
 
+function updateStatusBars()
+{
+  document.querySelector("#levelBar #bar").setAttribute("width","90%")
+}
+
 function mainMenu()
 {
   showButton(1, true);
   setButtonText(1, "New Game");
-  write("Hello world! This text was generated and placed by Javascript! :O ...well, it's a start, anyway. Now I technically have a backend and can write arbitrary text to the main output form. And look, it even wraps!\nNewlines work too!\n    And indentation as well!\n\nNow if only I could find a nicer color scheme for legibility that wasn't black on white or white on black.\nAll of this output so far was printed with the write() function!");
+  write("<center><b>The Unnamed Game</b></center>");
+  append("\nHello world! This text was generated and placed by Javascript! :O ...well, it's a start, anyway. Now I technically have a backend and can write arbitrary text to the main output form. And look, it even wraps!\nNewlines work too!\n    And indentation as well!\n\nNow if only I could find a nicer color scheme for legibility that wasn't black on white or white on black.\nAll of this output so far was printed with the write() function!");
   append("\nThis text was appended with a separate function intended for tacking on strings: append()!")
   append("\n\nTesting images:\n");
   appendImg("img/test.png");
@@ -100,4 +108,5 @@ function main()
 {
   setupScreen();
   mainMenu();
+  updateStatusBars()
 }
