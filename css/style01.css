@@ -163,12 +163,12 @@ button:active {
   padding-right: 2px;
   padding-top: 2%;
   padding-bottom: 2%;
-  height: 4%;
+  height: 10%;
   width: 100%;
 }
 .statBar > text {
-  font-size: 100%;
-  y: 75%;
+  font-size: 85%;
+  y: 75;
   fill: white;
   text-shadow: 1px 1px black;
 }

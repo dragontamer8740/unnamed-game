@@ -89,7 +89,8 @@ function hideAllButtons()
 
 function updateStatusBars()
 {
-  document.querySelector("#levelBar #bar").setAttribute("width","90%")
+  document.querySelector("#HPBar .bar").setAttribute("width","90%")
+  document.querySelector("#HPBar .barNum").innerHTML="90/100";
 }
 
 function mainMenu()
