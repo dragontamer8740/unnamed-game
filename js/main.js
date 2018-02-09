@@ -15,6 +15,11 @@
  *  along with The Unnamed Game.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/*
+ * See index.html for the rest of the JS files used, since
+ * Javascript doesn't have "include" functionality built-in.
+ */
+
 function setupScreen()
 {
   /* Clear screen of 'please enable javascript' text */
@@ -89,13 +94,50 @@ function hideAllButtons()
 
 function updateStatusBars()
 {
-  document.querySelector("#HPBar .bar").setAttribute("width","42%")
-  document.querySelector("#HPBar .barNum").innerHTML="42/100";
+  statBarSet("#HPBar", player.stats.HpCurr );
+  statBarSet("#StrBar", player.stats.str );
+  statBarSet("#AccBar", player.stats.acc );
+  statBarSet("#DefBar", player.stats.def );
+  statBarSet("#IntBar", player.stats.int );
+  statBarSet("#expBar", player.stats.XPToNextLevel() );
+}
 
-  document.querySelector("#StrBar .bar").setAttribute("width","88%")
-  document.querySelector("#StrBar .barNum").innerHTML="88";
+function statBarSet(id, num)
+{
+  /* "ID" is the svg's ID (like IntBar or StrBar). num is the value to set.
+   * HP and experience bars are not on a 0-100 scale like the others, so
+   * they have special cases.
+   * Once I actually have a playable game, I might make all stats have no static maximum.
+   */
 
-  
+  /* first, update the bars' values themselves: */
+  var selectorString= id + " .bar";
+  console.log(selectorString);
+  if (id === "#HPBar")
+  {
+    document.querySelector(selectorString).setAttribute("width", ((parseFloat(num) / player.stats.HPMax) * 100).toString() + "%");
+
+    /* then update numbers in bars: */
+    selectorString += "Num"; /* barNum is the class for the numbers in the SVG's */
+    document.querySelector(selectorString).innerHTML=(num + "/" + player.stats.HPMax);
+  }
+  else if (id === "#expBar")
+  {
+    var num1 = parseInt(( parseFloat(num) / (parseFloat(player.stats.XPToNextLevel())) * 100));
+    document.querySelector(selectorString).setAttribute("width", num1.toString() + "%");
+
+    /* then update numbers in bars: */
+    selectorString += "Num"; /* barNum is the class for the numbers in the SVG's */
+    document.querySelector(selectorString).innerHTML=(num + "/" + player.stats.XPToNextLevel());    
+  }
+  else
+  {
+    /* other stats are all out of 100 (as of now): */
+    document.querySelector(selectorString).setAttribute("width", ((parseFloat(num) / 100) * 100).toString() + "%");
+    /* then update numbers in bars: */
+    selectorString += "Num"; /* barNum is the class for the numbers in the SVG's */
+    document.querySelector(selectorString).innerHTML=num;
+  }
 }
 
 function mainMenu()
@@ -114,5 +156,5 @@ function main()
 {
   setupScreen();
   mainMenu();
-  updateStatusBars()
+  updateStatusBars();
 }
