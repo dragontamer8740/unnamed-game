@@ -99,7 +99,8 @@ function updateStatusBars()
   statBarSet("#AccBar", player.stats.acc );
   statBarSet("#DefBar", player.stats.def );
   statBarSet("#IntBar", player.stats.int );
-  statBarSet("#expBar", player.stats.XPToNextLevel() );
+  statBarSet("#expBar", player.stats.exp );
+  document.getElementById("levelField").innerHTML=player.stats.level;
 }
 
 function statBarSet(id, num)

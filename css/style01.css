@@ -169,12 +169,6 @@ button:active {
 }
 
 .statBar {
-/*  padding-left: 2px;
-  padding-right: 2px;*/
-/*  padding-top: 2%;
-  padding-bottom: 2%;*/
-/*  height: 45%;*/
-/*  width: 100%;*/
   border: 2px solid #0F3B0F;
   background-color: black;
 }
@@ -188,13 +182,12 @@ button:active {
   fill: rgb(32,128,32);
 }
 
-/*#levelBarStr {
-  
-}*/
+#levelField {
+  display: inline;
+}
 
 .statBar > .barStr {
   text-align: left;
-  
 }
 
 .statBar > .barNum {
