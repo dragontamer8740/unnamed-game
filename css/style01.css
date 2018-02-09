@@ -24,6 +24,7 @@ body {
   margin: 0;
   padding: 0;
   border: 0;
+  background-color: #134B13;
 }
 
 .container {
@@ -184,6 +185,15 @@ button:active {
 
 #levelField {
   display: inline;
+  float: right;
+  direction: rtl;
+/*  unicode-bidi: bidi-override;*/
+  text-align: right;
+  padding-right: 2px;
+}
+
+#nonBarStats {
+  padding-left: 2px;
 }
 
 .statBar > .barStr {
