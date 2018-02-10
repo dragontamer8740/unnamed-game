@@ -60,9 +60,6 @@ var player = {
     int:      "98",
     /* getters are apparently a new-ish thing in JS. Trying it out! */
     get XPToNextLevel () {
-    /*XPToNextLevel: function()
-    {*/
-      /* TO BE IMPLEMENTED */
       /* To start, I'm just gonna say that levelling takes
          (your current level times 100) XP. Level 1: 100xp, 2: 200xp, etc. */
       return (this.level * 100);

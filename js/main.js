@@ -115,7 +115,6 @@ function statBarSet(id, num) /* calculate stat bar widths and apply the results
 
   /* first, update the bars' values themselves: */
   var selectorString= id + " .bar";
-  console.log(selectorString);
   if (id === "#HPBar")
   {
     document.querySelector(selectorString).setAttribute("width", ((parseFloat(num) / player.stats.HPMax) * 100).toString() + "%");
