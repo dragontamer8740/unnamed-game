@@ -25,6 +25,9 @@ body {
   padding: 0;
   border: 0;
   background-color: #134B13;
+  font-size: 15px;
+/*  font-size: medium; */
+
 }
 
 .container {
@@ -35,16 +38,18 @@ body {
 
 .leftBar {
   flex: 0;
-  width: 20vw;
-  min-width: 13vw;
-  max-width: 13vw;
+  width: 12vw;
+  min-width: 12vw;
+  max-width: 12vw;
   height: 100vh; /* all heights on page determined by this height */
   color: white;
   padding-left: 4px;
   padding-right: 4px;
-  background-color: #134B13;
+  background-color: #134B38; /* #134B13 */
   display: flex;
   flex-direction: column;
+  font-size: 95%;
+/*  font-size: 0.8vw; */
 }
 
 #leftBarTop { /* region above statsArea */
@@ -69,7 +74,7 @@ body {
 }
 
 .topBtns {
-  background: #134B13;
+  background: #134B38; /* #134B13 */
   flex-direction: column;
   margin-bottom: 0px;
   flex: 1;
@@ -79,6 +84,7 @@ body {
   background: 1a3a1d;
   color: #87b78b;
   text-shadow: 3px 3px 2px black;
+/*  text-shadow: 1px 1px 1px black;*/
   flex-direction: column;
   flex: 16;
   padding-left: 4px;
@@ -88,7 +94,7 @@ body {
 }
 
 .botBtns {
-  background: #134B13;
+  background: #134B38; /* #134B13 */
   flex-direction: column;
   flex: 2;
 /*  padding: 4px;*/
@@ -146,27 +152,31 @@ body {
 }
 
 button, select{
-  background-color: #50A850;
+  /*  background-color: #50A850; */
+  background-color: #3A8C71;
   color: white;
   text-shadow: 1px 1px black;
   text-shadow: 1px 1px black;
   border-spacing: 3px 3px;
-  border: 3px outset #50A850;
+  /*  border: 3px outset #50A850; */
+  border: 3px outset #3A8C71;
   border-top-style: solid;
   border-left-style: solid;
   border-right-style: solid;
   border-bottom-style: solid;
-  border-top-color: #50A850;
-  border-left-color: #50A850;
-  border-bottom-color: #285428;
-  border-right-color: #285428;
+/*  border-top-color: #50A850;
+  border-left-color: #50A850; */
+  border-top-color: #3A8C71;
+  border-left-color: #3A8C71;
+  border-bottom-color: #0F3B0F;
+  border-right-color: #0F3B0F; /*  #285428 */
 }
 
 button:active {
-  border-bottom-color: #50A850;
-  border-right-color: #50A850;
-  border-top-color: #285428;
-  border-left-color: #285428;
+  border-bottom-color: #3A8C71;
+  border-right-color: #3A8C71;
+  border-top-color: #0F3B0F;
+  border-left-color: #0F3B0F;
 }
 
 .statBar {
@@ -180,7 +190,8 @@ button:active {
   text-shadow: 1px 1px black;
 }
 .statBar > rect {
-  fill: rgb(32,128,32);
+  /* fill: rgb(32,128,32); */ /* stat bar colour */
+  fill: #149669;
 }
 
 .rightColDataField {
@@ -198,11 +209,13 @@ button:active {
 
 .statBar > .barStr {
   text-align: left;
+  font-size: 70%; /* stat bar font size */
 }
 
 .statBar > .barNum {
   text-align: right;
   direction: rtl;
+  font-size: 70%; /* stat bar font size */
 }
 
 #statsArea {
@@ -223,33 +236,25 @@ center {
 
 red {
   color: red;
-  text-shadow: 1px 1px black;
 }
 blue {
-  color: blue;
-  text-shadow: 1px 1px black;
+  color: #2272D9; #800080
 }
 yellow {
   color: yellow;
-  text-shadow: 1px 1px black;
 }
 white {
   color: white;
-  text-shadow: 1px 1px black;
 }
 pink {
   color: LightPink;
-  text-shadow: 1px 1px black;
 }
 purple {
-  color: purple;
-  text-shadow: 1px 1px black;
+  color: #AD5BAD;
 }
 orange {
   color: orange;
-  text-shadow: 1px 1px black;
 }
 black {
   color: black;
-  text-shadow: 1px 1px white;
 }
