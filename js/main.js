@@ -180,7 +180,7 @@ function mainMenu()
   showButton(1, true);
   setButtonText(1, "New Game");
   write("<center><b>The Unnamed Game</b></center>");
-  append("\nHello world! This text was generated and placed by Javascript! :O ...well, it's a start, anyway. Now I technically have a backend and can write arbitrary text to the main output form. And look, it even wraps!\nNewlines work too!\n    And indentation as well!\n\nNow if only I could find a nicer color scheme for legibility that wasn't black on white or white on black.\nAll of this output so far was printed with the write() function!");
+  append("\nHello world! This text was generated and placed by Javascript! :O ...well, it's a start, anyway. Now I technically have a backend and can write arbitrary text to the main output form. And look, it even wraps!\nNewlines work too!\n    And indentation as well!\n\n<div style='text-decoration: line-through; display: inline;'>Now if only I could find a nicer color scheme for legibility that wasn't black on white or white on black.</div> NEVER MIND, I found one, I think!\nAll of this output so far was printed with the write() function!");
   append("\nThis text was appended with a separate function intended for tacking on strings: append()!")
   append("\n\nTesting images:\n");
   appendImg("img/test.png");

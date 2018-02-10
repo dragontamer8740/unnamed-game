@@ -82,7 +82,8 @@ body {
 
 .output {
   background: 1a3a1d;
-  color: #87b78b;
+  /*  color: #87b78b;*/
+  color: white;
   text-shadow: 3px 3px 2px black;
 /*  text-shadow: 1px 1px 1px black;*/
   flex-direction: column;
