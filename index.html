@@ -18,18 +18,24 @@
 <html>
   <head>
     <link rel="stylesheet" href="css/style01.css"></link>
+
     <script src="js/main.js"></script>
+    <!-- Page setup stuff. Also initializes the game and has main loop. -->
     <script src="js/playerClass.js"></script>
+    <!-- Player object definition. -->
+    <script src="js/game.js"></script>
+    <!-- Game object. -->
   </head>
   <body onload="main();">
     <div class="container">
       <nav class="nav leftBar">
         <div id="leftBarTop">
-          Name McNamerson
+          Namey McNamerson
         </div>
         <div id="statsArea">
-          STATS
-          <br/>
+          <div class="nonBarStats">
+            STATS
+          </div>
           <!-- HP bar -->
           <svg class="statBar" id="HPBar" viewBox="0 0 100 20"><rect class="bar" height="100%"/><text class="barStr"  x="1" y="75%">HP</text><text class="barNum" x="99" y="75%" font-size="smaller" fill="black">Num</text></svg>
           <br/>
@@ -48,8 +54,11 @@
           <!-- Experience Points bar -->
           <svg class="statBar" id="expBar" viewBox="0 0 100 20"><rect class="bar" height="100%"/><text class="barStr" x="1" y="75%">EXP</text><text class="barNum" x="99" y="75%" font-size="smaller" fill="black">Num/Num</text></svg>
           <br/>
-          <div id="nonBarStats">
-            Level: <div id="levelField"></div>
+          <div class="nonBarStats">
+            Level: <div class="rightColDataField" id="levelField"=></div>
+          </div>
+          <div class="nonBarStats">
+            Zorkmids: <div class="rightColDataField" id="moneyField"=></div>
           </div>
         </div>
       </NAV>

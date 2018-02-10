@@ -76,9 +76,9 @@ body {
 }
 
 .output {
-  background: #60A372;
-  color: black;
-  text-shadow: 1px 1px #AAAAAA;
+  background: 1a3a1d;
+  color: #87b78b;
+  text-shadow: 3px 3px 2px black;
   flex-direction: column;
   flex: 16;
   padding-left: 4px;
@@ -183,7 +183,7 @@ button:active {
   fill: rgb(32,128,32);
 }
 
-#levelField {
+.rightColDataField {
   display: inline;
   float: right;
   direction: rtl;
@@ -192,7 +192,7 @@ button:active {
   padding-right: 2px;
 }
 
-#nonBarStats {
+.nonBarStats {
   padding-left: 2px;
 }
 

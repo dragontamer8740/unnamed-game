@@ -92,7 +92,7 @@ function hideAllButtons()
   }
 }
 
-function updateStatusBars()
+function updateStatusBars() /* refresh status bars with current values */
 {
   statBarSet("#HPBar", player.stats.HpCurr );
   statBarSet("#StrBar", player.stats.str );
@@ -101,9 +101,11 @@ function updateStatusBars()
   statBarSet("#IntBar", player.stats.int );
   statBarSet("#expBar", player.stats.exp );
   document.getElementById("levelField").innerHTML=player.stats.level;
+  document.getElementById("moneyField").innerHTML=player.money;
 }
 
-function statBarSet(id, num)
+function statBarSet(id, num) /* calculate stat bar widths and apply the results
+                                to the status bar SVG's. */
 {
   /* "ID" is the svg's ID (like IntBar or StrBar). num is the value to set.
    * HP and experience bars are not on a 0-100 scale like the others, so
@@ -124,12 +126,12 @@ function statBarSet(id, num)
   }
   else if (id === "#expBar")
   {
-    var num1 = parseInt(( parseFloat(num) / (parseFloat(player.stats.XPToNextLevel())) * 100));
+    var num1 = parseInt(( parseFloat(num) / (parseFloat(player.stats.XPToNextLevel)) * 100));
     document.querySelector(selectorString).setAttribute("width", num1.toString() + "%");
 
     /* then update numbers in bars: */
     selectorString += "Num"; /* barNum is the class for the numbers in the SVG's */
-    document.querySelector(selectorString).innerHTML=(num + "/" + player.stats.XPToNextLevel());    
+    document.querySelector(selectorString).innerHTML=(num + "/" + player.stats.XPToNextLevel);    
   }
   else
   {
@@ -141,8 +143,41 @@ function statBarSet(id, num)
   }
 }
 
+function settingsMenu()
+{
+  /*
+     Don't let this function execute when it's already in the settings menu.
+     this will be important once we are backing up the current game state for
+     restoration when exiting the settings menu.
+
+     Procedure idea:
+     0) disable save/load state buttons & 'settings; button to avoid some
+        complications.
+     1) get content of main game output [$().innerHTML] and save it to a
+        variable.
+     2) get functions associated with the bottom buttons (if I make the buttons
+        be represented by objects in Javascript, this will be easy enough. If I
+        use a string to represent the function name to call, this becomes even
+        easier, but this approach requires buttons to run eval() when executed.
+        I know eval() is controversial, but I _think_ this is a valid use case
+        when you put religion aside.
+
+        Button format:
+        |--label
+        |--call   :   function name associated with the button
+        |--state  :   enabled/disabled
+        |--vis    :   visibility ("display: none;" for instance)
+  */
+  document.getElementById("settings").removeEventListener("click", settingsMenu, false);
+  write("Settings go here! Eventually!");
+}
+
 function mainMenu()
 {
+  document.getElementById("settings").addEventListener("click", settingsMenu, false);
+
+
+  
   showButton(1, true);
   setButtonText(1, "New Game");
   write("<center><b>The Unnamed Game</b></center>");
