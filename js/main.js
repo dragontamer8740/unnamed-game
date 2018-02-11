@@ -20,8 +20,89 @@
  * Javascript doesn't have "include" functionality built-in.
  */
 
+
+/*function button(var num)
+{
+
+  
+  if(i >= 0 && i <= 11)
+  {
+    
+  }
+  else
+  {
+    console.log("Tried to print to a button out of range (0-11)!");
+  }
+}*/
+
+var button = [];
+function makeButtons()
+{
+  for(var i=0; i <= 11; i++)
+  {
+    var j = i.toString(); /* have to do this to not have all the buttons point to #11 */
+    var tempButton = {
+      num: parseInt(j),
+      get element() { return document.getElementById("btn" + this.num)},
+      set label(val) {
+        this.element.innerHTML = val;
+      },
+      get label() {
+        return this.element.innerHTML;
+      },
+      func: "",
+      set visible(val) {
+        if(val==false)
+        {
+          this.element.style["display"]="none";
+        }
+        else if(val==true)
+        {
+          this.element.style["display"]="inline";
+        }
+        else
+        {
+          console.log("You're passing a non-true/false value to setVisible()!");
+        }
+      },
+      set enabled(val) {
+        if(val==true || val==false)
+        {
+          this.element.enabled=val;
+        }
+        else
+        {
+          console.log("You're passing a non-true/false value to setEnabled()!");
+        }
+      },
+      get enabled() {
+        return (this.element.enabled);
+      },
+      get visible() {
+        if(this.element.style["display"] == "none")
+        {
+          return false;
+        }
+        else
+        {
+          return true;
+        }
+      }
+    }
+      button[i] = tempButton;
+  }
+
+}
+
+
+
+/*var button = []; *//* GLOBAL VARIABLE MUAHAHA. Contains button objects populated by setupScreen(). */
+  /* populate button array with button objects */
+
 function setupScreen()
 {
+  document.getElementById("settings").addEventListener("click", settingsMenu, false);
+  document.getElementById("btnFullScreen").addEventListener("click", fullScreen, false);
   /* Clear screen of 'please enable javascript' text */
   write("");
   var saveSelBtn = document.getElementById("saveSelect");
@@ -33,7 +114,14 @@ function setupScreen()
   saveOpt2.text = "Slot 2";
   saveSelBtn.add(saveOpt1, null);
   saveSelBtn.add(saveOpt2, null);
+
 }
+/*  {
+    element: document.getElementById("btn0"),
+    label: "Button 0", // text on button
+    func: "" // name of function to call, as a string. Yeah, if you're wondering, I'm using eval(). Muahaha.
+  },
+ }*/
 
 /* Since I won't use JQuery (which uses '$()'), I can do this as shorthand to access output. */
 function $()
@@ -60,34 +148,12 @@ function appendImg(str)
   $().innerHTML+=str;
 }
 
-function btn(num)
-{
-/* get button number "num"'s element and return it.*/
-  var str="btn";
-  return document.getElementById("btn"+num);
-}
-
-function hideButton(num)
-{
-  btn(num).style.display="none";
-}
-
-function showButton(num)
-{
-  btn(num).style.display="inline";
-}
-
-function setButtonText(num, value)
-{
-  btn(num).innerHTML=value;
-}
-
 function hideAllButtons()
 {
-  var i=1;
-  while(i<=12)
+  var i=0;
+  while(i<11)
   {
-    hideButton(i);
+    button[i].visible = false;
     i++;
   }
 }
@@ -142,6 +208,14 @@ function statBarSet(id, num) /* calculate stat bar widths and apply the results
   }
 }
 
+function setMarginWidth(paddingWidth)
+{ /* called from settings menu, adds padding to page for fullscreen on mobile devices. */
+/*  var paddingWidth = document.getElementById("marginWidthSetting").value + "px";
+  var container=document.getElementById("container");*/
+  container.style["padding-left"]=paddingWidth;
+  container.style["padding-right"]=paddingWidth;
+}
+
 function settingsMenu()
 {
   /*
@@ -167,29 +241,85 @@ function settingsMenu()
         |--state  :   enabled/disabled
         |--vis    :   visibility ("display: none;" for instance)
   */
+
+  hideAllButtons();
   document.getElementById("settings").removeEventListener("click", settingsMenu, false);
-  write("Settings go here! Eventually!");
+  write("\n<b>Page margins:</b>");
+  /* slider */
+  append('\n<div class="slidecontainer" style="display:inline;"><input type="range" min="0" max="75" value="0" class="slider" id="myRange" style="display:inline;"></div><div style="display: inline;" id="marginValue"></div>');
+  append('\nSome devices (like phones) often have rounded corners on their screens which will be result in cropping the game when in full-screen. Use this to set margins past the beginning of the curve to avoid this.');
+  var slider=document.getElementById("myRange");
+  var sliderValueField=document.getElementById("marginValue");
+  sliderValueField.innerHTML="<b>" + slider.value + "px</b>"
+  slider.oninput = function() {
+    var val = slider.value + "px"
+    sliderValueField.innerHTML="<b>" + val + "</b>"
+    setMarginWidth(val);
+
+  }
+
 }
+
+function fullScreen()
+{
+  var pageElement = document.querySelector("body");
+  /* both prefixed and un-prefixed versions of fullscreen API supported */
+  if((!document.fullscreen) && (!document.mozFullScreen) && (!document.webkitIsFullScreen) && (!document.msFullscreenElement))
+  {
+    /* enable full screen. Try all the usual API's */
+    /* un-prefixed */
+    if(pageElement.requestFullscreen)
+    {
+      pageElement.requestFullscreen();
+    }
+    else if (pageElement.mozRequestFullScreen)
+    {
+      pageElement.mozRequestFullScreen();
+    }
+    else if (pageElement.webkitRequestFullScreen)
+    {
+      pageElement.webkitRequestFullScreen();
+    }
+    else if (pageElement.msRequestFullscreen)
+    {
+      pageElement.msRequestFullscreen();
+    }
+  }
+  else /* if not already in full screen: */
+  {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    }
+    else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+    }
+    else if (document.webkitCancelFullScreen) {
+        document.webkitCancelFullScreen();
+    }
+    else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+    }
+  }
+}
+
 
 function mainMenu()
 {
-  document.getElementById("settings").addEventListener("click", settingsMenu, false);
-
-
-  
-  showButton(1, true);
-  setButtonText(1, "New Game");
   write("<center><b>The Unnamed Game</b></center>");
   append("\nHello world! This text was generated and placed by Javascript! :O ...well, it's a start, anyway. Now I technically have a backend and can write arbitrary text to the main output form. And look, it even wraps!\nNewlines work too!\n    And indentation as well!\n\n<div style='text-decoration: line-through; display: inline;'>Now if only I could find a nicer color scheme for legibility that wasn't black on white or white on black.</div> NEVER MIND, I found one, I think!\nAll of this output so far was printed with the write() function!");
   append("\nThis text was appended with a separate function intended for tacking on strings: append()!")
   append("\n\nTesting images:\n");
   appendImg("img/test.png");
   append("\n\nTesting some text effects!\n<b>BAM</b>\n<i>Pow!</i>\n<red>Zoom!</red> <blue>fizz!</blue>\n<yellow>Snap!</yellow> <orange>Crackle!</orange> <pink>Pop!</pink>(tm)\n<b><i><purple>SMAAAASH!</purple></i></b>\n<white>If you can read this, you don't need glasses.</white>");
+
+  button[0].visible = true;
+  button[0].label = "New Game";
 }
 
 function main()
 {
   setupScreen();
+  makeButtons();
   mainMenu();
   updateStatusBars();
 }

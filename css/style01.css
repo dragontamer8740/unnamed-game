@@ -24,7 +24,18 @@ body {
   margin: 0;
   padding: 0;
   border: 0;
-  background-color: #134B13;
+  background-color: #134B38; /* 134B13 */
+  font-size: 15px;
+/*  font-size: medium; */
+
+}
+
+body:fullscreen {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+/*  background-color: rgba(19,75,56,0); *//* 134B13 */
   font-size: 15px;
 /*  font-size: medium; */
 
@@ -33,19 +44,20 @@ body {
 .container {
   display: flex;
   flex-flow: row;
-  min-height: 50px;  
+  min-height: 50px;
+  background-color: #134B38; /* 134B13 */
 }
 
 .leftBar {
-  flex: 0;
-  width: 12vw;
-  min-width: 12vw;
-  max-width: 12vw;
+  flex: 0 0 0;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
   height: 100vh; /* all heights on page determined by this height */
   color: white;
   padding-left: 4px;
   padding-right: 4px;
-  background-color: #134B38; /* #134B13 */
+  background-color: inherit; /* #134B13 */
   display: flex;
   flex-direction: column;
   font-size: 95%;
@@ -63,10 +75,9 @@ body {
 .main {
   height: 100vh;
   width: 85%;
-  background-color: #0E260E;
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex: 1 0 0;
 }
 
 .col {
@@ -74,20 +85,24 @@ body {
 }
 
 .topBtns {
-  background: #134B38; /* #134B13 */
+  background: inherit; /* #134B13 */
   flex-direction: column;
   margin-bottom: 0px;
-  flex: 1;
+  /*border-left: 2px solid #0F3B0F;*/
+  /*  padding-left: 2px;*/
+  flex: 1 0 0;
+  margin-left: 0px;
 }
 
 .output {
-  background: 1a3a1d;
+/*  background-color: #1a3a1d;*/
+  background-color: #0E260E;
   /*  color: #87b78b;*/
   color: white;
   text-shadow: 3px 3px 2px black;
 /*  text-shadow: 1px 1px 1px black;*/
   flex-direction: column;
-  flex: 16;
+  flex: 16 0 0;
   padding-left: 4px;
   padding-right: 4px;
   overflow-y: scroll;
@@ -95,16 +110,16 @@ body {
 }
 
 .botBtns {
-  background: #134B38; /* #134B13 */
+  background: inherit; /* #134B13 */
   flex-direction: column;
-  flex: 2;
+  flex: 2 0 0;
 /*  padding: 4px;*/
   color: white;
   margin:0px;
 }
 
 .rightBar {
-  flex:2;
+  flex:2 0 0;
   width: 138px;
   min-width: 138px;
   max-width: 138px;
@@ -115,14 +130,14 @@ body {
 }
 
 .ribbonBtn {
-  flex: 1;
+  flex: 1 0 0;
   height: 100%;
   width: 100%;
 }
 
 .ribbonBtnBot {
   flex-direction: column;
-  flex: 1;*/
+  flex: 1 0 0;
   height: 5vh;
   min-height: 5vh;
   max-height: 5vh;
@@ -142,7 +157,7 @@ body {
 
 .botRibbonCell {
   width: 16.66%;
-  flex: 1;
+  flex: 1 0 0;
   padding-top: 0px;
   padding-bottom: 0px;
 }
@@ -225,6 +240,44 @@ button:active {
   text-shadow: 1px 1px black;
 }
 
+.sideBarBtn {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  flex: 1 0 0;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+.settingsBtn {
+  box-sizing: border-box;
+  display: inline;
+  width: 100%;
+  margin: 0 auto;
+  float:none;
+}
+
+.settingsField {
+  display: inline;
+  box-sizing: border-box;
+  width: 8vw;
+  float: none;
+  background-color: #196767;
+  color: white;
+  text-shadow: 1px 1px black;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #;
+    opacity: 1; /* Firefox */
+}
+
+::-moz-placeholder {
+  color: #00CC00;
+  opacity: 1;
+  text-shadow: 1px 1px black;
+}
+
 /*rect > levelBar {
   width: 75%;
 }*/
@@ -239,7 +292,7 @@ red {
   color: red;
 }
 blue {
-  color: #2272D9; #800080
+  color: #2272D9; /*#800080*/
 }
 yellow {
   color: yellow;
