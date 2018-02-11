@@ -1,0 +1,27 @@
+2018 February 11
+	Created changelog.
+	Making buttons usable, part 1.
+
+	Buttons now have an array of objects in the javascript code; these objects
+	have getters and setters to alter the values of the buttons.
+	For example:
+	`button[0].visible = true;`
+	will enable button 0,
+	`button[0].label = "BLAARGH";`
+	will make the text on button 0 "BLAARGH".
+
+	Button objects also have a 'func' property, which is the function they are
+	supposed to call at a given time, represented as a string.
+	Yeah, this will use `eval()`. If you don't like it, tell me a better way! I've
+	done a request for comment and gotten no replies so I think that I'm gonna
+	do it this way unless I do get a reply on a better way that is still flexible.
+
+	Note that currently the eval() stuff is not implemented. That'll be soon.
+
+	Also added a slider in settings for the page margins for mobile users with
+	rounded screen corners. Currently this does not save persistently.
+
+	Removed some older functions that aren't needed anymore with the new system.
+
+	Changed CSS metrics for the sidebar to a fixed pixel width.
+-------------------------------------------------------------------------------
