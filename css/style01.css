@@ -281,7 +281,12 @@ button:active {
 /*rect > levelBar {
   width: 75%;
 }*/
-
+a:link {
+  color: #2272D9;
+}
+a:visited {
+  color: #2272D9;
+}
 /* <center> is not a supported tag in HTML5, so implement it ourselves */
 center {
   text-align:center;
