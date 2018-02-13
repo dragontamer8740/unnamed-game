@@ -20,27 +20,15 @@
  * Javascript doesn't have "include" functionality built-in.
  */
 
-
-/*function button(var num)
-{
-
-  
-  if(i >= 0 && i <= 11)
-  {
-    
-  }
-  else
-  {
-    console.log("Tried to print to a button out of range (0-11)!");
-  }
-}*/
-
+/* array of button objects - the glue logic which maps the buttons to
+   arbitrary functions.*/
 var button = [];
-function makeButtons()
+function makeButtons() /* Called by main() right after setupScreen(). */
 {
   for(var i=0; i <= 11; i++)
   {
-    var j = i.toString(); /* have to do this to not have all the buttons point to #11 */
+    var j = i.toString(); /* have to do this to not have all the buttons point
+                             to #11 */
     var tempButton = {
       num: parseInt(j),
       get element() { return document.getElementById("btn" + this.num)},
@@ -62,7 +50,7 @@ function makeButtons()
         }
         else
         {
-          console.log("You're passing a non-true/false value to setVisible()!");
+          console.log("Passing a non-true/false value to setVisible()! - Button number: " + this.num);
         }
       },
       set enabled(val) {
@@ -72,7 +60,7 @@ function makeButtons()
         }
         else
         {
-          console.log("You're passing a non-true/false value to setEnabled()!");
+          console.log("Passing a non-true/false value to setEnabled()! - Button number: " + this.num);
         }
       },
       get enabled() {
@@ -306,6 +294,7 @@ function fullScreen()
 function mainMenu()
 {
   write("<center><b>The Unnamed Game</b></center>");
+  append('\nSource code is at: <a href="https://github.com/dragontamer8740/unnamed-game">https://github.com/dragontamer8740/unnamed-game</a>');
   append("\nHello world! This text was generated and placed by Javascript! :O ...well, it's a start, anyway. Now I technically have a backend and can write arbitrary text to the main output form. And look, it even wraps!\nNewlines work too!\n    And indentation as well!\n\n<div style='text-decoration: line-through; display: inline;'>Now if only I could find a nicer color scheme for legibility that wasn't black on white or white on black.</div> NEVER MIND, I found one, I think!\nAll of this output so far was printed with the write() function!");
   append("\nThis text was appended with a separate function intended for tacking on strings: append()!")
   append("\n\nTesting images:\n");
