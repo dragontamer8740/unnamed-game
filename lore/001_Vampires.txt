@@ -1,3 +1,5 @@
+= Vampire =
+
 Vampires are beings that live off of the essence of others. They are able to
 exist for centuries if their food supply continues to.
 
@@ -7,19 +9,35 @@ present in their relationship with livestock. As livestock is slaughtered
 so humans can thrive, so humans are occasionally "harvested" so that vampires
 may.
 
+Their signature thirst for blood is not a constant desire - merely something
+needed on occasion to replenish their own supplies. Without it, they can become
+anemic and weak, because a side-effect of the spell they were enchanted by
+prevents their blood cells from reproducing quickly enough to maintain a healthy
+level.
+
+====Vampire-Human relations====
 Vampires do not see humans as mere livestock, however. They were once humans
 themselves, remember their times as humans, and participate in human culture.
-Their thirst for blood is not a constant desire - merely something needed on
-occasion to replenish their supplies. Without it, they can become anemic and
-weak, because a side-effect of the spell they were enchanted by prevents their
-blood cells from reproducing quickly enough to keep steady. They usually
-hide their true natures while living among humans, for they are feared as
-'unnatural' and have historically been persecuted for their affliction. They
-are regarded by many to not even be humans any longer, but cruel imitations
-of their former selves animated by dark magics. As it is impossible for one to
-truly see the consciousness of another, this argument is not able to be
-truly disproven for the same reasons that a theroetical artificial intelligence
-cannot prove that it is capable of emotions to other beings.
+They do so in secrecy, for their safety depends on it, and their lives depend
+on being able to obtain blood.
+
+They hide their true natures while living among humans, for they are feared as
+'unnatural,' or even 'demonic,' and have historically been persecuted for their
+affliction. They are regarded by a significant portion of the human population
+to not even be humans any longer, but cruel imitations of their former selves
+animated by dark magics.
+
+Vampires have occasionally tried to prove that this is not the case after being
+discovered in attempts to defend themselves, but this has a high failure rate.
+
+It is impossible for one to truly understand the consciousness of another, even
+between two humans, and so the theory that they are no longer who their bodies
+identify them as cannot be truly disproven.
+At some point, humans would have to take the vampires at their word, and many
+are afraid to do that.
+
+
+==== The Curse ====
 
 Their spell (or curse, as it is seen my many humans) is transferrable to humans
 and some other species by repeated bites, sharing needles, or sexual encounters.
@@ -34,3 +52,42 @@ the beginning of recorded history.
 
 [in progress]
 
+==== Abilities ====
+Part of why vampires are so feared is their mastery of magics. Nearly all
+vampires, after becoming afflicted, exhibit some magical abilities. Several -
+like the ability to turn into a fog, seem to be natural abilities that become
+instinctually controllable. Other abilities include:
+ * Night vision - Vampires are particularly good at seeing in low light.
+ * Hypnosis - Usually limited in time and power. Mostly used to 'suggest'
+              actions to an unconfident or nervous individual. Thought to
+              require eye contact.
+ * Flight - Full vampires have bat-like wings that they disguise magically
+            in the presence of humans. This enables them to glide for short
+            distances and travel more quickly than unaided humans.
+
+
+Others - like control of elemental magics - are typically learnable by normal
+humans, although the time and effort needed is typically far greater than for
+a vampire. Where humans need to learn to detect magical currents, vampires
+seem to have an intuitive knack for it, and there is some evidence to indicate
+that some humans have intentionally become vampires out of frustration with
+their difficulties mastering magic as a shortcut.
+
+== Miscellaneous ==
+
+Several historically prominent and particularly well-esteemed wizards are
+known to have lived to unusually old ages before disappearing suddenly, leading
+several scholars to independently conclude that they were actually vampires.
+Edward Jan Vilsgaard is noted for his contributions to armor durability and
+catapult technology, which historians agree was a major factor behind his home
+kingdom of Kaldania's stunning and unexpected triumph over the forces of
+the self-titled Victor the Magnanimous six centuries ago. In a famous painting,
+"Day Hawks," painted 540 years later and depicting a café and its customers in
+the early hours of the morning, features a man with a stunning likeness to the
+old conjurer, all the way down to the large scar on his left cheek he obtained
+in his youth. This and several other sightings in works of art have lead some
+vampires to the conclusion that his magical gift came from becoming a vampire,
+and that he left Kaldania rather than be discovered as an immortal being.
+They suspect that he has been enjoying a long retirement and is simply taking
+a moment every decade or two to 'painting-bomb' a scene when he sees an artist
+on the streets.
