@@ -41,6 +41,14 @@ body:fullscreen {
 
 }
 
+button {
+  outline: none;
+}
+
+input {
+  outline: none;
+}
+
 .container {
   display: flex;
   flex-flow: row;
@@ -49,7 +57,7 @@ body:fullscreen {
 }
 
 .leftBar {
-  flex: 0 0 0;
+  flex: 0 0 0%;
   width: 150px;
   min-width: 150px;
   max-width: 150px;
@@ -67,7 +75,7 @@ body:fullscreen {
 #leftBarTop { /* region above statsArea */
   text-shadow: 1px 1px black;
   width: 100%;
-  flex: 1 1 0;
+  flex: 1 1 0%;
   flex-direction: column;
   border-spacing: 2px;
 }
@@ -77,7 +85,7 @@ body:fullscreen {
   width: 85%;
   display: flex;
   flex-direction: column;
-  flex: 1 0 0;
+  flex: 1 0 0%;
 }
 
 .col {
@@ -90,7 +98,7 @@ body:fullscreen {
   margin-bottom: 0px;
   /*border-left: 2px solid #0F3B0F;*/
   /*  padding-left: 2px;*/
-  flex: 1 0 0;
+  flex: 1 0 0%;
   margin-left: 0px;
 }
 
@@ -102,7 +110,7 @@ body:fullscreen {
   text-shadow: 3px 3px 2px black;
 /*  text-shadow: 1px 1px 1px black;*/
   flex-direction: column;
-  flex: 16 0 0;
+  flex: 16 0 0%;
   padding-left: 4px;
   padding-right: 4px;
   overflow-y: scroll;
@@ -112,14 +120,14 @@ body:fullscreen {
 .botBtns {
   background: inherit; /* #134B13 */
   flex-direction: column;
-  flex: 2 0 0;
+  flex: 2 0 0%;
 /*  padding: 4px;*/
   color: white;
   margin:0px;
 }
 
 .rightBar {
-  flex:2 0 0;
+  flex:2 0 0%;
   width: 138px;
   min-width: 138px;
   max-width: 138px;
@@ -130,21 +138,21 @@ body:fullscreen {
 }
 
 .ribbonBtn {
-  flex: 1 0 0;
+  flex: 1 0 0%;
   height: 100%;
   width: 100%;
 }
 
 .ribbonBtnBot {
   flex-direction: column;
-  flex: 1 0 0;
+  flex: 1 0 0%;
   height: 5vh;
   min-height: 5vh;
   max-height: 5vh;
   width: 100%;
   overflow: hidden;
   border-top-width: 0px;
-  flex: 1;
+  flex: 1 0 0%;
 /* hide buttons until buttons are made visible by scripting
    (use "display: inline;" to make them visible). */
   display:none;
@@ -157,7 +165,7 @@ body:fullscreen {
 
 .botRibbonCell {
   width: 16.66%;
-  flex: 1 0 0;
+  flex: 1 0 0%;
   padding-top: 0px;
   padding-bottom: 0px;
 }
@@ -235,7 +243,7 @@ button:active {
 }
 
 #statsArea {
-  flex: 18 1 0;
+  flex: 18 1 0%;
   flex-direction: column;
   text-shadow: 1px 1px black;
 }
@@ -244,7 +252,7 @@ button:active {
   box-sizing: border-box;
   display: block;
   width: 100%;
-  flex: 1 0 0;
+  flex: 1 0 0%;
   margin: 0 auto;
   flex-direction: column;
 }
@@ -331,19 +339,56 @@ black {
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.textConsole-content {
-  
-  background-color: #2E3436;
-  margin: 20px auto;
-  width: 80%;
-  color: #E9EDE5;
+popOverContainer{
+  /*  margin: 20px auto; */
+  flex: 1 0 0%;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2vh;
+  width: 90%;
+  height: 100%;
+  display: block;
 }
 
-#textConsole-body{
+.textConsole-content {
+  display:flex;
+  flex-direction: column;
+  background-color: #2E3436;
+  height: 90%;
+  color: #E9EDE5;
+  text-shadow: 3px 3px 2px black;
+}
+
+#textConsole-body {
+  height: 100%;
+  margin: 0px;
   white-space: pre-wrap;
   font-family: "Lucida Console", Monaco, monospace;
   font-size: 12pt;
+  overflow-y: scroll;
 }
+
+#textConsole-inputLine {
+  /*  height: calc(100% - 40px);*/
+  display:flex;
+  flex: 1 0 0%;
+  display:inline;
+  width: 100%;
+  border: 0px;
+  border-width: 0px;
+  padding: 0px;
+  outline: none;
+  appearance:none;
+  textarea:focus, input:focus{
+    border: 0%;
+    outline: none;
+  }
+  z-index:2;
+}
+
+
 
 #closeShell{ /* don't let user select the 'x' in the close button */
   cursor: default;

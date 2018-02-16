@@ -28,13 +28,23 @@
 var popOver;
 var shell;
 var closeShellBtn;
-
+var shellInput;
 function shellClear() {
   /* erase shell output */
   shell.innerHTML=""
 }
 function shellWrite(str) {
   shell.innerHTML+=str;
+}
+
+function shellHelp()
+{
+  shellWrite("Hacker's shell\n");
+  shellWrite("Wanna hack the game? Here's how you do it.\n");
+  shellWrite("The shell has some specialized commands:\n");
+  shellWrite("clear\tclear shell. Javascript function name: shellClear()\nhelp\tdisplay this message. Javascript function name: shellHelp()");
+  shellWrite("\nIt also acts as a general-purpose Javascript evaluation console. To write to this shell, use <blue>shellWrite()</blue> instead of <blue>console.log()</blue>.");
+  shellWrite("\n\nInspired by things like the Quake console and <a href=" + '"' + "https://github.com/AlexNisnevich/untrusted" + '"' + ">this game</a>, as well as the MIT AI Lab's famous \"<a href=\"https://en.wikipedia.org/wiki/Incompatible_Timesharing_System\">ITS</a>\" operating system.\n");
 }
 
 function f9pressed()
@@ -53,12 +63,11 @@ function showShell()
 {
   popOver.style.display="block";
   var shell=document.getElementById("textConsole-body");
-  shellClear();
-  shellWrite("Hacker shell\n(Will be implemented later. ")
-  shellWrite("Should be easier than the debug console to learn, and will also work on mobile devices unlike most browser debug consoles - it will be triggerable via a button on such systems).");
-  shellWrite("\n(Will feature some easy commands for tweaking stats, as well ");
-  shellWrite("as JS eval() for hackers to play with and modify the game.)\n");
-  shellWrite("Inspired by things like the Quake console and <a href=" + '"' + "https://github.com/AlexNisnevich/untrusted" + '"' + ">this game</a>, as well as the MIT AI Lab's famous \"<a href=\"https://en.wikipedia.org/wiki/Incompatible_Timesharing_System\">ITS</a>\" operating system.");
+  if(shell.innerHTML == "") /* first launch */
+  {
+    shellHelp();
+  }
+  shellInput.focus();
 }
 
 function hideShell()
@@ -166,11 +175,46 @@ function makeButtons() /* Called by main() right after setupScreen(). */
 
 function setupScreen()
 {
+  popOver=document.getElementById("textConsole");
+  shell=document.getElementById("textConsole-body");
+  shellInput =  document.getElementById("textConsole-inputLine");
+  shellInput.addEventListener("keyup",function(event){
+    /*if enter key was pressed and shell is visible*/
+    if(event.keyCode==13 && shellInput.style.display != "none")
+    {
+      if(shellInput.value != "")
+      {
+        var cmd = shellInput.value; /* so it doesn't change while we're working on it */
+        try
+        {
+          eval(cmd);
+        }
+        catch(e)
+        {
+          if (e instanceof SyntaxError)
+          {
+            shellWrite("\n<red>Error</red> while executing command:<yellow>" + cmd + "</yellow>:\n\t" + e.message);
+          }
+          else
+          {
+            /* custom commands are prefixed with '!'*/
+            if(cmd == "!clear" || cmd == "!cls")
+            {
+              shellClear();
+            }
+            
+            else /* throw the error */
+            {
+              throw(e);
+            }
+          }
+        }
+      }
+    }
+  });
   document.getElementById("closeShell").addEventListener("click", hideShell, false);
 /*  closeShellBtn=document.getElementById("closeShell");*/
 /*  closeShellBtn.onclick = hideShell(); */ /* close shell on close button click */
-  popOver=document.getElementById("textConsole");
-  shell=document.getElementById("textConsole-body");
   document.getElementById("settings").addEventListener("click", settingsMenu, false);
   document.getElementById("btnFullScreen").addEventListener("click", fullScreen, false);
   /* Clear screen of 'please enable javascript' text */

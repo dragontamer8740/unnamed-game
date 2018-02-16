@@ -153,9 +153,18 @@ I'm interested to know what you did I and hope that it's because Netsurf is comi
     </div>
     <div id="textConsole" class="popOverBg">
       <!-- Modal content -->
-      <div class="textConsole-content"><span id="shellTitle">Console</span><span id="closeShell">&times;</span><br/>
-        <pre><div id="textConsole-body"></div></pre>
-      </div>
+      <popOverContainer>
+        <div class="textConsole-content">
+          <div id="consoleTopBar">
+            <span id="shellTitle">Console</span>
+            <span id="closeShell">&times;</span>
+          </div>
+          <br/>
+          <pre id="textConsole-body"></pre>
+          <br/>
+        </div>
+        <input id="textConsole-inputLine" type="text" name="shellCmd">
+      </popOverContainer>
     </div>
   </body>
 </html>
