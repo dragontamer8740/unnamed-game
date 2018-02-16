@@ -44,7 +44,7 @@ function shellHelp()
   shellWrite("The shell has some specialized commands:\n");
   shellWrite("!clear\tclear shell. Javascript function name: shellClear()\n!help\tdisplay this message. Javascript function name: shellHelp()");
   shellWrite("\nIt also acts as a general-purpose Javascript evaluation console. To write to this shell, use <blue>shellWrite()</blue> instead of <blue>console.log()</blue>.");
-  shellWrite("\n\nInspired by things like the Quake console and <a href=" + '"' + "https://github.com/AlexNisnevich/untrusted" + '"' + ">this game</a>, as well as the MIT AI Lab's famous \"<a href=\"https://en.wikipedia.org/wiki/Incompatible_Timesharing_System\">ITS</a>\" operating system.\n");
+  shellWrite("\n\nInspired by things like the Quake console and <a href=" + '"' + "https://github.com/AlexNisnevich/untrusted" + '"' + ">this game</a>, as well as the MIT AI Lab's famous \"<a href=\"https://en.wikipedia.org/wiki/Incompatible_Timesharing_System\">ITS</a>\" operating system.\n\n");
 }
 
 function f9pressed()
@@ -182,49 +182,54 @@ function setupScreen()
     /*if enter key was pressed and shell is visible*/
     if(event.keyCode==13 && shellInput.style.display != "none")
     {
+      var cmd = shellInput.value; /* so it doesn't change while we're working on it */
       if(shellInput.value != "")
       {
-        var cmd = shellInput.value; /* so it doesn't change while we're working on it */
+        shellWrite("&gt; " + cmd + "\n");
         try
         {
-          /* evaluate the string as Javascript */
-          eval(cmd);
+          /* custom commands are prefixed with '!'*/
+          if(cmd == "!clear" || cmd == "!cls")
+          {
+            shellClear();
+          }
+          else if(cmd == "!help")
+          {
+            shellHelp();
+          }
+          else
+          {
+            /* evaluate the string as Javascript */
+            eval(cmd);
+          }
         }
         catch(e)
         {
           if (e instanceof SyntaxError)
           {
-            shellWrite("\n<red>Error</red> while executing command:<yellow>" + cmd + "</yellow>:\n\t" + e.message);
+            shellWrite("<red>Syntax Error</red> while evaluating command line: <yellow>" + cmd + "</yellow>:\n\t" + e.message + "\n");
           }
-          else
+          else if(e instanceof ReferenceError)
           {
-            /* custom commands are prefixed with '!'*/
-            if(cmd == "!clear" || cmd == "!cls")
-            {
-              shellClear();
-            }
-            else if(cmd == "!help")
-            {
-              shellHelp();
-            }
-            /*
-             *  keep input since we don't have a "previous command navigation" thing working yet
-             *  (up arrow)
-             */
-            else /* throw the error */
-            {
-              throw(e);
-            }
+            shellWrite("<red>Reference Error</red> while evaluating command line: <yellow>" + cmd + "</yellow>:\n\t" + e.message + "\n");
+          }
+          /*
+           *  keep input since we don't have a "previous command navigation" thing working yet
+           *  (up arrow)
+           */
+          else /* throw the error */
+          {
+            throw(e);
           }
         }
-        /* scroll to end of output */
-        shell.scrollTop = shell.scrollHeight;
       }
+      /* scroll to end of output */
+      shell.scrollTop = shell.scrollHeight;
     }
   });
   document.getElementById("closeShell").addEventListener("click", hideShell, false);
-/*  closeShellBtn=document.getElementById("closeShell");*/
-/*  closeShellBtn.onclick = hideShell(); */ /* close shell on close button click */
+  /*  closeShellBtn=document.getElementById("closeShell");*/
+  /*  closeShellBtn.onclick = hideShell(); */ /* close shell on close button click */
   document.getElementById("settings").addEventListener("click", settingsMenu, false);
   document.getElementById("btnFullScreen").addEventListener("click", fullScreen, false);
   /* Clear screen of 'please enable javascript' text */
