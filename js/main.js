@@ -20,6 +20,83 @@
  * Javascript doesn't have "include" functionality built-in.
  */
 
+/*
+ * keystroke to bring up the "game console" which allows viewing
+ * documentation and lore as well as executing arbitrary javascript.
+ * Hacker-friendly is my policy!
+ */
+var popOver;
+var shell;
+var closeShellBtn;
+
+function shellClear() {
+  /* erase shell output */
+  shell.innerHTML=""
+}
+function shellWrite(str) {
+  shell.innerHTML+=str;
+}
+
+function f9pressed()
+{
+  if(popOver.style.display=="block")
+  {
+    hideShell();
+  }
+  else
+  {
+    showShell();
+  }
+}
+
+function showShell()
+{
+  popOver.style.display="block";
+  var shell=document.getElementById("textConsole-body");
+  shellClear();
+  shellWrite("Hacker shell\n(Will be implemented later. ")
+  shellWrite("Should be easier than the debug console to learn, and will also work on mobile devices unlike most browser debug consoles - it will be triggerable via a button on such systems).");
+  shellWrite("\n(Will feature some easy commands for tweaking stats, as well ");
+  shellWrite("as JS eval() for hackers to play with and modify the game.)\n");
+  shellWrite("Inspired by things like the Quake console and <a href=" + '"' + "https://github.com/AlexNisnevich/untrusted" + '"' + ">this game</a>, as well as the MIT AI Lab's famous \"<a href=\"https://en.wikipedia.org/wiki/Incompatible_Timesharing_System\">ITS</a>\" operating system.");
+}
+
+function hideShell()
+{
+  popOver.style.display="none";
+}
+
+window.onkeydown = function(event){
+  var key = event.which || event.keyCode; 
+  if(key == 120) {/* f9 */
+    event.preventDefault();
+  }
+}
+window.onkeypress = function(event){
+  var key = event.which || event.keyCode;
+    if(key==120)
+  {
+    event.preventDefault();
+  }
+}
+
+window.onkeyup = function(event) {
+  /*
+   *  'which' works in FF, 'keyCode' works elsewhere. I'd use 'event.key'
+   *  instead, but Safari doesn't support it yet (next release probably will.)
+   *  --15 Feb 2018
+   */
+  var key = event.which || event.keyCode; 
+/*  append("pressed: " + key + "\n");*/
+  if(key==120)
+  {
+    event.preventDefault();
+    f9pressed();
+  }
+}
+
+
+
 /* array of button objects - the glue logic which maps the buttons to
    arbitrary functions.*/
 var button = [];
@@ -89,6 +166,11 @@ function makeButtons() /* Called by main() right after setupScreen(). */
 
 function setupScreen()
 {
+  document.getElementById("closeShell").addEventListener("click", hideShell, false);
+/*  closeShellBtn=document.getElementById("closeShell");*/
+/*  closeShellBtn.onclick = hideShell(); */ /* close shell on close button click */
+  popOver=document.getElementById("textConsole");
+  shell=document.getElementById("textConsole-body");
   document.getElementById("settings").addEventListener("click", settingsMenu, false);
   document.getElementById("btnFullScreen").addEventListener("click", fullScreen, false);
   /* Clear screen of 'please enable javascript' text */
@@ -300,7 +382,6 @@ function mainMenu()
   append("\n\nTesting images:\n");
   appendImg("img/test.png");
   append("\n\nTesting some text effects!\n<b>BAM</b>\n<i>Pow!</i>\n<red>Zoom!</red> <blue>fizz!</blue>\n<yellow>Snap!</yellow> <orange>Crackle!</orange> <pink>Pop!</pink>(tm)\n<b><i><purple>SMAAAASH!</purple></i></b>\n<white>If you can read this, you don't need glasses.</white>");
-
   button[0].visible = true;
   button[0].label = "New Game";
 }
