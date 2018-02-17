@@ -34,6 +34,7 @@ function shellClear() {
   shell.innerHTML=""
 }
 function shellWrite(str) {
+  console.log(str);
   shell.innerHTML+=str;
 }
 
@@ -44,7 +45,8 @@ function shellHelp()
   shellWrite("The shell has some specialized commands:\n");
   shellWrite("!clear\tclear shell. Javascript function name: shellClear()\n!help\tdisplay this message. Javascript function name: shellHelp()");
   shellWrite("\nIt also acts as a general-purpose Javascript evaluation console. To write to this shell, use <blue>shellWrite()</blue> instead of <blue>console.log()</blue>.");
-  shellWrite("\n\nInspired by things like the Quake console and <a href=" + '"' + "https://github.com/AlexNisnevich/untrusted" + '"' + ">this game</a>, as well as the MIT AI Lab's famous \"<a href=\"https://en.wikipedia.org/wiki/Incompatible_Timesharing_System\">ITS</a>\" operating system.\n\n");
+  shellWrite("\nExample code to change the player's last name and print the new one to the shell:\n");
+  shellWrite("\n\nInspired by things like the Quake console and <a href=" + '"' + "https://github.com/AlexNisnevich/untrusted" + '"' + ">this game</a>, as well as the MIT AI Lab's famous \"<a href=\"https://en.wikipedia.org/wiki/Incompatible_Timesharing_System\">ITS</a>\" operating system.\nOf course, your browser shell will be more convenient, but for mobile users, this is your lifeline.\n\n");
 }
 
 function f9pressed()
@@ -75,21 +77,22 @@ function hideShell()
   popOver.style.display="none";
 }
 
-window.onkeydown = function(event){
+/*window.onkeydown = function(event){
   var key = event.which || event.keyCode; 
-  if(key == 120) {/* f9 */
+  if(key == 120) { //f9
     event.preventDefault();
   }
 }
 window.onkeypress = function(event){
   var key = event.which || event.keyCode;
+  shellWrite(key + "\n")
     if(key==120)
   {
     event.preventDefault();
   }
-}
+}*/
 
-window.onkeyup = function(event) {
+window.onkeydown = function(event) {
   /*
    *  'which' works in FF, 'keyCode' works elsewhere. I'd use 'event.key'
    *  instead, but Safari doesn't support it yet (next release probably will.)
@@ -100,10 +103,17 @@ window.onkeyup = function(event) {
   if(key==120)
   {
     event.preventDefault();
-    f9pressed();
   }
 }
 
+window.onkeyup = function(event) {
+  var key = event.which || event.keyCode;
+  if(key==120)
+  {
+    event.preventDefault();
+    f9pressed();
+  }
+}
 
 
 /* array of button objects - the glue logic which maps the buttons to
@@ -111,7 +121,7 @@ window.onkeyup = function(event) {
 var button = [];
 function makeButtons() /* Called by main() right after setupScreen(). */
 {
-  for(var i=0; i <= 11; i++)
+  for(var i=0; i <= 11; i++) /* loop to create all button 'objects' */
   {
     var j = i.toString(); /* have to do this to not have all the buttons point
                              to #11 */
@@ -201,26 +211,16 @@ function setupScreen()
           {
             /* evaluate the string as Javascript */
             eval(cmd);
+            shellWrite("\n");
           }
         }
         catch(e)
         {
-          if (e instanceof SyntaxError)
-          {
-            shellWrite("<red>Syntax Error</red> while evaluating command line: <yellow>" + cmd + "</yellow>:\n\t" + e.message + "\n");
-          }
-          else if(e instanceof ReferenceError)
-          {
-            shellWrite("<red>Reference Error</red> while evaluating command line: <yellow>" + cmd + "</yellow>:\n\t" + e.message + "\n");
-          }
+          shellWrite("<red>" + e.toString() + "</red>\n");
           /*
            *  keep input since we don't have a "previous command navigation" thing working yet
            *  (up arrow)
            */
-          else /* throw the error */
-          {
-            throw(e);
-          }
         }
       }
       /* scroll to end of output */
@@ -289,7 +289,8 @@ function hideAllButtons()
 
 function updateStatusBars() /* refresh status bars with current values */
 {
-  statBarSet("#HPBar", player.stats.HpCurr );
+  document.getElementById("playerName").innerHTML=player.name + player.lName;
+  statBarSet("#HPBar", player.stats.HPCurr );
   statBarSet("#StrBar", player.stats.str );
   statBarSet("#AccBar", player.stats.acc );
   statBarSet("#DefBar", player.stats.def );
@@ -384,9 +385,7 @@ function settingsMenu()
     var val = slider.value + "px"
     sliderValueField.innerHTML="<b>" + val + "</b>"
     setMarginWidth(val);
-
   }
-
 }
 
 function fullScreen()
@@ -447,8 +446,9 @@ function mainMenu()
 
 function main()
 {
-  setupScreen();
-  makeButtons();
-  mainMenu();
+  setupScreen(); /* initialize stuff. Sets up keybindings, shell (console),
+                      save slot dropdown menu. */
+  makeButtons(); /* create main game button objects */
+  mainMenu();    /* Main menu screen */
   updateStatusBars();
 }

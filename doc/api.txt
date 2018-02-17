@@ -1,0 +1,8 @@
+This is not intended to be all-inclusive, but just a brief run-down on some
+commonly used functions in my code.
+
+write(string):  Clear the main text output and write `string` to it.
+append(string): Append `string` to the existing text on the main output.
+
+shellWrite():   Append `string` to the existing text in the built-in javascript
+                shell.
