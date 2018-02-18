@@ -209,8 +209,12 @@ function setupScreen()
           }
           else
           {
-            /* evaluate the string as Javascript */
-            eval(cmd);
+            /* evaluate the string as Javascript, saving return value for printing*/
+            var rtnval=eval(cmd);
+            if(rtnval !== undefined)
+            {
+              shellWrite(rtnval);
+            }
             shellWrite("\n");
           }
         }
@@ -289,7 +293,7 @@ function hideAllButtons()
 
 function updateStatusBars() /* refresh status bars with current values */
 {
-  document.getElementById("playerName").innerHTML=player.name + player.lName;
+  document.getElementById("playerName").innerHTML=player.name + " " + player.lName;
   statBarSet("#HPBar", player.stats.HPCurr );
   statBarSet("#StrBar", player.stats.str );
   statBarSet("#AccBar", player.stats.acc );

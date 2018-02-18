@@ -21,5 +21,9 @@ var game = {
   get dayOfWeek () {   /* function to get the day of the week. 0-6, Monday to
                           Sunday. */
     return ( this.daysPlayed % 7 );
-  }
+  },
+  playerPosition: 0; /* placeholder */
+  gameFlags: {
+    /* game flags go here */
+  },
 };
