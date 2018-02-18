@@ -16,13 +16,13 @@
  */
 
 var game = {
-  daysPlayed:    "0",
-  timeMinutes:   "0",  /* goes from 0 to 1339. (60*24=1400)*/
+  daysPlayed:    0,
+  timeMinutes:   0,  /* goes from 0 to 1339. (60*24=1400)*/
   get dayOfWeek () {   /* function to get the day of the week. 0-6, Monday to
                           Sunday. */
     return ( this.daysPlayed % 7 );
   },
-  playerPosition: 0; /* placeholder */
+  playerPosition: 0, /* placeholder */
   gameFlags: {
     /* game flags go here */
   },

@@ -49,7 +49,7 @@ function shellHelp()
   shellWrite("\n\nInspired by things like the Quake console and <a href=" + '"' + "https://github.com/AlexNisnevich/untrusted" + '"' + ">this game</a>, as well as the MIT AI Lab's famous \"<a href=\"https://en.wikipedia.org/wiki/Incompatible_Timesharing_System\">ITS</a>\" operating system.\nOf course, your browser shell will be more convenient, but for mobile users, this is your lifeline.\n\n");
 }
 
-function f9pressed()
+function toggleJSCon()
 {
   if(popOver.style.display=="block")
   {
@@ -111,7 +111,7 @@ window.onkeyup = function(event) {
   if(key==120)
   {
     event.preventDefault();
-    f9pressed();
+    toggleJSCon();
   }
 }
 
@@ -236,6 +236,15 @@ function setupScreen()
   /*  closeShellBtn.onclick = hideShell(); */ /* close shell on close button click */
   document.getElementById("settings").addEventListener("click", settingsMenu, false);
   document.getElementById("btnFullScreen").addEventListener("click", fullScreen, false);
+  document.getElementById("btnJSCon").addEventListener("click", toggleJSCon,false);
+  var textConsoleBg=document.getElementById("textConsole");
+  textConsoleBg.addEventListener("click",function(event) {
+    if(event.target == textConsoleBg || event.target == document.querySelector("popovercontainer"))
+    {
+      toggleJSCon();
+    }
+  },false);
+
   /* Clear screen of 'please enable javascript' text */
   write("");
   var saveSelBtn = document.getElementById("saveSelect");
