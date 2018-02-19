@@ -45,8 +45,8 @@ function shellHelp()
   shellWrite("The shell has some specialized commands:\n");
   shellWrite("!clear\tclear shell. Javascript function name: shellClear()\n!help\tdisplay this message. Javascript function name: shellHelp()");
   shellWrite("\nIt also acts as a general-purpose Javascript evaluation console. To write to this shell, use <blue>shellWrite()</blue> instead of <blue>console.log()</blue>.");
-  shellWrite("\nExample code to change the player's last name and print the new one to the shell:\n");
-  shellWrite("\n\nInspired by things like the Quake console and <a href=" + '"' + "https://github.com/AlexNisnevich/untrusted" + '"' + ">this game</a>, as well as the MIT AI Lab's famous \"<a href=\"https://en.wikipedia.org/wiki/Incompatible_Timesharing_System\">ITS</a>\" operating system.\nOf course, your browser shell will be more convenient, but for mobile users, this is your lifeline.\n\n");
+/*  shellWrite("\nExample code to change the player's last name and print the new one to the shell:\n");*/
+  shellWrite("\n\nInspired by things like the Quake console and <a href=" + '"' + "https://github.com/AlexNisnevich/untrusted" + '"' + ">this game</a>, as well as the MIT AI Lab's famous \"<a href=\"https://en.wikipedia.org/wiki/Incompatible_Timesharing_System\">ITS</a>\" operating system, which encouraged exploration & improving/breaking the system, and frowned on secret-keeping.\nOf course, your browser shell will be more convenient, but for mobile users, this is your lifeline.\n\n");
 }
 
 function toggleJSCon()
@@ -160,10 +160,17 @@ function makeButtons() /* Called by main() right after setupScreen(). */
         }
       },
       get enabled() {
-        return (this.element.enabled);
+        if(this.element.enabled != undefined && this.element.enabled != false && this.element.enabled != "false")
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
       },
       get visible() {
-        if(this.element.style["display"] == "none")
+        if(this.element.style["display"] == "none" || this.element.style["display"] == "")
         {
           return false;
         }
