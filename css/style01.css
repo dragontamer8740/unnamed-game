@@ -18,44 +18,34 @@
 html {
   height: 100%;
 }
-
 body {
   height: 100%;
   margin: 0;
   padding: 0;
   border: 0;
-  background-color: #134B38; /* 134B13 */
+  background-color: #134B38;
   font-size: 15px;
-/*  font-size: medium; */
-
 }
-
 body:fullscreen {
   height: 100%;
   margin: 0;
   padding: 0;
   border: 0;
-/*  background-color: rgba(19,75,56,0); *//* 134B13 */
+/*  background-color: rgba(19,75,56,0); */
   font-size: 15px;
-/*  font-size: medium; */
-
 }
-
 button {
   outline: none;
 }
-
 input {
   outline: none;
 }
-
 .container {
   display: flex;
   flex-flow: row;
   min-height: 50px;
   background-color: #134B38; /* 134B13 */
 }
-
 .leftBar {
   flex: 0 0 0%;
   width: 150px;
@@ -71,7 +61,6 @@ input {
   font-size: 95%;
 /*  font-size: 0.8vw; */
 }
-
 #leftBarTop { /* region above statsArea */
   text-shadow: 1px 1px black;
   width: 100%;
@@ -79,7 +68,6 @@ input {
   flex-direction: column;
   border-spacing: 2px;
 }
-
 .main {
   height: 100vh;
   width: 85%;
@@ -87,11 +75,9 @@ input {
   flex-direction: column;
   flex: 1 0 0%;
 }
-
 .col {
   margin: 2px;
 }
-
 .topBtns {
   background: inherit; /* #134B13 */
   flex-direction: column;
@@ -101,31 +87,26 @@ input {
   flex: 1 0 0%;
   margin-left: 0px;
 }
-
 .output {
-/*  background-color: #1a3a1d;*/
   background-color: #0E260E;
-  /*  color: #87b78b;*/
   color: white;
   text-shadow: 3px 3px 2px black;
-/*  text-shadow: 1px 1px 1px black;*/
   flex-direction: column;
   flex: 16 0 0%;
+  margin: 2px;
+  margin-right: 0px;
   padding-left: 4px;
   padding-right: 4px;
   overflow-y: scroll;
   white-space: pre-wrap;
 }
-
 .botBtns {
-  background: inherit; /* #134B13 */
+  background: inherit;
   flex-direction: column;
   flex: 2 0 0%;
-/*  padding: 4px;*/
   color: white;
   margin:0px;
 }
-
 .rightBar {
   flex:2 0 0%;
   width: 138px;
@@ -136,15 +117,12 @@ input {
   color: white;
   background-color: #134B13;
 }
-
 .ribbonBtn {
   flex: 1 0 0%;
   height: 100%;
   width: 100%;
 }
-
 .ribbonBtnBot {
-  flex-direction: column;
   flex: 1 0 0%;
   height: 5vh;
   min-height: 5vh;
@@ -157,52 +135,42 @@ input {
    (use "display: inline;" to make them visible). */
   display:none;
 }
-
 .topRibbonCell {
   width: 16.66%;
   height: 100%;
 }
-
 .botRibbonCell {
   width: 16.66%;
   flex: 1 0 0%;
   padding-top: 0px;
   padding-bottom: 0px;
 }
-
 #settings {
   margin-left: 14%;
   width: 86%;
 }
-
 button, select{
-  /*  background-color: #50A850; */
   background-color: #3A8C71;
   color: white;
   text-shadow: 1px 1px black;
   text-shadow: 1px 1px black;
   border-spacing: 3px 3px;
-  /*  border: 3px outset #50A850; */
   border: 3px outset #3A8C71;
   border-top-style: solid;
   border-left-style: solid;
   border-right-style: solid;
   border-bottom-style: solid;
-/*  border-top-color: #50A850;
-  border-left-color: #50A850; */
   border-top-color: #3A8C71;
   border-left-color: #3A8C71;
   border-bottom-color: #0F3B0F;
-  border-right-color: #0F3B0F; /*  #285428 */
+  border-right-color: #0F3B0F;
 }
-
 button:active:enabled {
   border-bottom-color: #3A8C71;
   border-right-color: #3A8C71;
   border-top-color: #0F3B0F;
   border-left-color: #0F3B0F;
 }
-
 button:disabled, button[disabled]{
   background-color: #808080;
   border-bottom-color: #2F2F2F;
@@ -212,7 +180,6 @@ button:disabled, button[disabled]{
   color: #D8D8D8;
   text-shadow: 1px 1px #404040;
 }
-
 .statBar {
   border: 2px solid #0F3B0F;
   background-color: black;
@@ -224,49 +191,39 @@ button:disabled, button[disabled]{
   text-shadow: 1px 1px black;
 }
 .statBar > rect {
-  /* fill: rgb(32,128,32); */ /* stat bar colour */
   fill: #149669;
 }
-
 .rightColDataField {
   display: inline;
   float: right;
   direction: rtl;
-/*  unicode-bidi: bidi-override;*/
   text-align: right;
   padding-right: 2px;
 }
-
 .nonBarStats {
   padding-left: 2px;
 }
-
 .statBar > .barStr {
   text-align: left;
   font-size: 70%; /* stat bar font size */
 }
-
 .statBar > .barNum {
   text-align: right;
   direction: rtl;
   font-size: 70%; /* stat bar font size */
 }
-
 #statsArea {
   flex: 18 1 0%;
   flex-direction: column;
   text-shadow: 1px 1px black;
 }
-
 .sideBarBtn {
   box-sizing: border-box;
   display: block;
   width: 100%;
   flex: 1 0 0%;
   margin: 0 auto;
-  flex-direction: column;
 }
-
 .settingsBtn {
   box-sizing: border-box;
   display: inline;
@@ -274,7 +231,6 @@ button:disabled, button[disabled]{
   margin: 0 auto;
   float:none;
 }
-
 .settingsField {
   display: inline;
   box-sizing: border-box;
@@ -285,32 +241,34 @@ button:disabled, button[disabled]{
   text-shadow: 1px 1px black;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #;
-    opacity: 1; /* Firefox */
-}
-
-::-moz-placeholder {
+/* don't remember what these were for anymore... leaving them commented out
+   for now, will remove later. */
+/*::placeholder {*/ /* Chrome, Firefox, Opera, Safari 10.1+ */
+/*    color: #00CC00;
+    opacity: 1; *//* Firefox */
+/*}*/
+/*::-moz-placeholder {
   color: #00CC00;
   opacity: 1;
   text-shadow: 1px 1px black;
-}
-
-/*rect > levelBar {
-  width: 75%;
 }*/
+
+/* blue hyperlinks in a slightly different shade than default so they look better */
 a:link {
   color: #2272D9;
 }
 a:visited {
   color: #2272D9;
 }
+
+/* Below this point: markup tags for text output effects
+   Use like:
+   <center><red>Centered red text</red> <blue>and blue text</blue></center>0
+*/
 /* <center> is not a supported tag in HTML5, so implement it ourselves */
 center {
   text-align:center;
 }
-/* wow, that was easy for once. Now we have a shortcut again. */
-
 red {
   color: red;
 }
@@ -398,24 +356,23 @@ popOverContainer{
   z-index:2;
 }
 
-
-
-#closeShell{ /* don't let user select the 'x' in the close button */
+#closeShell{
+  /* don't let user select the 'x' in the close button */
   cursor: default;
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  /* Put in right corner of "title bar" */
   float: right;
   direction: rtl;
-/*  unicode-bidi: bidi-override;*/
   text-align: right;
 }
-#shellTitle{
+
+#shellTitle{ /* title bar of shell window */
   color: #E9EDE5;
   cursor: default;
   float: left;
-/*  unicode-bidi: bidi-override;*/
   text-align: left;
 }
