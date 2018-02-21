@@ -150,9 +150,10 @@ function makeButtons() /* Called by main() right after setupScreen(). */
         }
       },
       set enabled(val) {
-        if(val==true || val==false)
+        if(val==true||val==false)
         {
-          this.element.enabled=val;
+          /* the game uses inverse logic (enabled=true, disabled=false */
+          this.element.disabled=!val;
         }
         else
         {
@@ -160,7 +161,7 @@ function makeButtons() /* Called by main() right after setupScreen(). */
         }
       },
       get enabled() {
-        if(this.element.enabled != undefined && this.element.enabled != false && this.element.enabled != "false")
+        if(this.element.disabled != undefined && this.element.disabled != false && this.element.enabled != "false")
         {
           return true;
         }

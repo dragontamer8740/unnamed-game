@@ -63,6 +63,16 @@ function setGameButtons(btnBackup)
   }
 }
 
+function getGameTextBody()
+{
+  /* reminder: $() is the same as document.getElementById("stdout") */
+  return JSON.stringify($().innerHTML)
+}
+
+function setGameTextBody(textBodyBackup)
+{
+  $().innerHTML=JSON.parse(textBodyBackup);
+}
 
 function saveData()
 {

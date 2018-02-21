@@ -196,11 +196,21 @@ button, select{
   border-right-color: #0F3B0F; /*  #285428 */
 }
 
-button:active {
+button:active:enabled {
   border-bottom-color: #3A8C71;
   border-right-color: #3A8C71;
   border-top-color: #0F3B0F;
   border-left-color: #0F3B0F;
+}
+
+button:disabled, button[disabled]{
+  background-color: #808080;
+  border-bottom-color: #2F2F2F;
+  border-right-color: #2F2F2F;
+  border-top-color: #808080;
+  border-left-color: #808080;
+  color: #D8D8D8;
+  text-shadow: 1px 1px #404040;
 }
 
 .statBar {
