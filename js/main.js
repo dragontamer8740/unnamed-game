@@ -136,13 +136,27 @@ function makeButtons() /* Called by main() right after setupScreen(). */
       },
       func: "",
       set visible(val) {
+        /* also disables the button when invisible/disables it when true
+           technically this is redundant, but it makes managing a tri-state
+           button a lot easier.
+           (invisible, visible-enabled, visible-disabled)
+           This function should therefore only be used directly to make
+           a button invisible; rely on set enabled otherwise (which also
+           makes the button visible)
+        */
         if(val==false)
         {
           this.element.style["display"]="none";
+          /* we can't just use the 'enabled' getter here because it makes
+             this recursive */
+          this.element.disabled=!val;
         }
         else if(val==true)
         {
+          /* making a button visible like this always will make it enabled.
+             this is why the 'enabled' setter should be used instead.*/
           this.element.style["display"]="inline";
+          this.element.disabled=!val;
         }
         else
         {
@@ -150,9 +164,19 @@ function makeButtons() /* Called by main() right after setupScreen(). */
         }
       },
       set enabled(val) {
-        if(val==true||val==false)
+        /* also enables visibility when set. No point in doing them
+           separately, that's just more to keep track of and remember */
+        if(val==true)
         {
-          /* the game uses inverse logic (enabled=true, disabled=false */
+          /* also set visibility */
+          this.element.style["display"]="inline";
+          /* the game uses inverse logic from HTML
+             (enabled=true, disabled=false */
+          this.element.disabled=!val;
+        }
+        else if(val==false)
+        {
+          this.element.style["display"]="inline";
           this.element.disabled=!val;
         }
         else
@@ -161,13 +185,13 @@ function makeButtons() /* Called by main() right after setupScreen(). */
         }
       },
       get enabled() {
-        if(this.element.disabled != undefined && this.element.disabled != false && this.element.enabled != "false")
+        if(this.element.disabled != undefined && this.element.disabled != false)
         {
-          return true;
+          return false;
         }
         else
         {
-          return false;
+          return true;
         }
       },
       get visible() {
@@ -462,6 +486,7 @@ function mainMenu()
   appendImg("img/test.png");
   append("\n\nTesting some text effects!\n<b>BAM</b>\n<i>Pow!</i>\n<red>Zoom!</red> <blue>fizz!</blue>\n<yellow>Snap!</yellow> <orange>Crackle!</orange> <pink>Pop!</pink>(tm)\n<b><i><purple>SMAAAASH!</purple></i></b>\n<white>If you can read this, you don't need glasses.</white>");
   button[0].visible = true;
+  button[0].enabled = true;
   button[0].label = "New Game";
 }
 
