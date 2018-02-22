@@ -82,14 +82,6 @@ function hideShell()
   if(key == 120) { //f9
     event.preventDefault();
   }
-}
-window.onkeypress = function(event){
-  var key = event.which || event.keyCode;
-  shellWrite(key + "\n")
-    if(key==120)
-  {
-    event.preventDefault();
-  }
 }*/
 
 window.onkeydown = function(event) {
