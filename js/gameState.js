@@ -134,7 +134,11 @@ function setPlayerData(playerBackup)
       if(element != "stats") { /* sub-objects have to be treated differently */
         player.privData[element]=playerBackup[element];
       }
-      else if(element == "stats") /* not just 'else' b/c we might add more objects later */
+      else if(element == "stats") /* not just 'else' b/c we might add more objects
+                                     later (inventory for instance).
+                                     Might be able to just do a loop for objects
+                                     as opposed to specific names.
+                                  */
       {
         Object.keys(playerBackup[element]).forEach(
           function(element2)
@@ -148,8 +152,6 @@ function setPlayerData(playerBackup)
   updateStatusBars(); /* since we're using privData directly */
 }
 
-
-
 function saveData()
 {
   /* gameObj is a kind of abstraction of the actual game which tidily contains
@@ -158,7 +160,8 @@ function saveData()
   var gameObj={
     button: getGameButtons(),
     gameText: JSON.parse(getGameTextBody()),
-    game: getGameData()
+    game: getGameData(),
+    player: getPlayerData()
   }
   return JSON.stringify(gameObj);
 }
@@ -174,5 +177,5 @@ function loadData(saveStr)
   /* restore game data */
   setGameData(gameObj.game);
   /* restore player data */
-  
+  setPlayerData(gameObj.player);
 }
