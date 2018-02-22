@@ -47,7 +47,7 @@ function getGameButtons()
     }
     i++;
   }
-  return JSON.stringify(btnBackup);
+  return btnBackup;
 }
 
 function setGameButtons(btnBackup)
@@ -57,8 +57,10 @@ function setGameButtons(btnBackup)
   {
     button[i].label=btnBackup[i].label;
     button[i].func=btnBackup[i].func;
-    button[i].visible=btnBackup[i].visible;
+    /* set 'enabled' state before 'visible' state because enabled will automatically
+       make a button visible. */
     button[i].enabled=btnBackup[i].enabled;
+    button[i].visible=btnBackup[i].visible;
     i++;
   }
 }
@@ -69,10 +71,84 @@ function getGameTextBody()
   return JSON.stringify($().innerHTML)
 }
 
-function setGameTextBody(textBodyBackup)
+function getGameData() /* game.js game object data */
 {
-  $().innerHTML=JSON.parse(textBodyBackup);
+  /* getters aren't impacted if you try to write over them (e.g., write 5 to
+     dayOfWeek on restoration), because you aren't replacing the entire object
+     this way. This makes it safe to restore objects in terms of their individual
+     element values.
+
+     Caveat: I'd imagine this might be somewhat trickier with button states and
+     stuff, and I have a 'privData' object for the player to simplify things there
+     by adding a layer of separation between setter functions and the values they
+     set. 
+  */
+  var gameBackup={}; /* make the object */
+  Object.keys(game).forEach(
+    function(element)
+    {
+      gameBackup[element]=game[element];
+    }
+  );
+  return gameBackup;
 }
+
+function setGameData(gameBackup)
+{
+  Object.keys(gameBackup).forEach(
+    function(element)
+    {
+      game[element]=gameBackup[element];
+    }
+  );
+
+}
+
+function getPlayerData()
+{
+  var playerBackup={};
+  Object.keys(player.privData).forEach(
+    function(element)
+    {
+      playerBackup[element]=player.privData[element];
+    }
+  );
+  /* playerBackup has a 'stats' sub-object we need to account for */
+  /* make "stats" sub-object */
+  playerBackup["stats"]={};
+  /* iterate through its privData (raw data fields w/o getters/setters) */
+  Object.keys(player.stats.privData).forEach(
+    function(element)
+    {
+      playerBackup["stats"][element]=player.stats.privData[element];
+    }
+  );
+  return playerBackup;
+}
+
+function setPlayerData(playerBackup)
+{
+  Object.keys(playerBackup).forEach(
+    function(element)
+    {
+      if(element != "stats") { /* sub-objects have to be treated differently */
+        player.privData[element]=playerBackup[element];
+      }
+      else if(element == "stats") /* not just 'else' b/c we might add more objects later */
+      {
+        Object.keys(playerBackup[element]).forEach(
+          function(element2)
+          {
+            player[element].privData[element2]=playerBackup[element][element2];
+          }
+        )
+      }
+    }
+  );
+  updateStatusBars(); /* since we're using privData directly */
+}
+
+
 
 function saveData()
 {
@@ -80,7 +156,9 @@ function saveData()
      all of the things we need to keep track of. */
   /* as of this writing, only tracks button state rather than everything */
   var gameObj={
-    button: JSON.parse(getGameButtons())
+    button: getGameButtons(),
+    gameText: JSON.parse(getGameTextBody()),
+    game: getGameData()
   }
   return JSON.stringify(gameObj);
 }
@@ -89,6 +167,12 @@ function loadData(saveStr)
 {
   /* deserialize JSON, set in-game buttons accordingly */
   var gameObj = JSON.parse(saveStr);
+  /* restore button states */
   setGameButtons(gameObj.button);
-
+  /* restore text window state */
+  write(gameObj.gameText);
+  /* restore game data */
+  setGameData(gameObj.game);
+  /* restore player data */
+  
 }
