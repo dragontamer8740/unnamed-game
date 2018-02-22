@@ -15,16 +15,52 @@
  *  along with The Unnamed Game.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/* Font is taken from GhostPDL 9.06, which was released under GPLv3. The
+documentation included in the software indicates that the Type1 font
+is also licensed under GPLv3. The Type1 was modified and converted to
+create the WOFF and TTF versions below. */
+
+@font-face{
+  font-family: "URW Bookman L";
+  src: url("../fonts/urwbookmanl-ligh.woff") format("woff"),
+       url("../fonts/urwbookmanl-ligh.ttf") format("truetype");
+}
+
+@font-face{
+  font-family: "URW Bookman L";
+  src: url("../fonts/urwbookmanl-demibold.woff") format("woff"),
+       url("../fonts/urwbookmanl-demibold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face{
+  font-family: "URW Bookman L";
+  src: url("../fonts/urwbookmanl-lighital.woff") format("woff"),
+       url("../fonts/urwbookmanl-lighital.ttf") format("truetype");
+  font-style: italic;
+}
+
+@font-face{
+  font-family: "URW Bookman L";
+  src: url("../fonts/urwbookmanl-demiboldital.woff") format("woff"),
+       url("../fonts/urwbookmanl-demiboldital.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+
 html {
   height: 100%;
 }
+
 body {
+  font-family: "URW Bookman L";
   height: 100%;
   margin: 0;
   padding: 0;
   border: 0;
   background-color: #134B38;
-  font-size: 15px;
+  font-size: 12pt;
 }
 body:fullscreen {
   height: 100%;
@@ -123,6 +159,7 @@ input {
   width: 100%;
 }
 .ribbonBtnBot {
+  font-weight: bold;
   flex: 1 0 0%;
   height: 5vh;
   min-height: 5vh;
@@ -150,6 +187,8 @@ input {
   width: 86%;
 }
 button, select{
+  font-family: "URW Bookman L";
+  font-size: 100%;
   background-color: #3A8C71;
   color: white;
   text-shadow: 1px 1px black;

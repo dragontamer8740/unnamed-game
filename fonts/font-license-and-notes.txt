@@ -1,0 +1,7 @@
+URW Bookman was taken from the PostScript Type 1 fonts present in GhostPDL 9.06,
+in the directory `gs/Resource/Font.` 9.06 was licensed under the GNU GPL
+version 3.
+
+The Type 1 font was converted by me using FontForge into TrueType and WOFF
+formats. My version has one change: all ligatures have been removed in the
+interest of legibility.
