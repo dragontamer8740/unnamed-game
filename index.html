@@ -31,6 +31,9 @@
     <!-- Game state stuff, like functions to save/restore states -->
   </head>
   <body onload="main();">
+    <!-- we are using a custom upload button which triggers this form via a
+         javascript-generated click event for uploading saves. -->
+    <input type="file" id="upload" style="display:none" onchange="loadDataFromFile()">
     <div class="container" id="container" allowfullscreen="true">
       <nav class="nav leftBar">
         <div id="leftBarTop">

@@ -215,6 +215,39 @@ function saveDataToFile(slot)
   saveAs("slot"+slot.toString() + ".json",getSaveDataJSON(true) + "\n");
 }
 
+function loadDataFromFile()
+{
+  var file=document.getElementById("upload");
+  var reader = new FileReader(); /* Ugh, I hate callbacks. */
+  reader.onload = function(e)
+  {
+    loadDataFromFilePt2(reader.result); /* I really hate callbacks. */
+  }
+  reader.readAsText(file.files[0]);
+  /* the callback up above calls loadDataFromFilePt2 whenever the file 
+     is done being read. */
+}
+
+function loadDataFromFilePt2(uploadedJSON)
+{
+  var goodJSON=true;
+  try{
+    JSON.parse(uploadedJSON);
+  }
+  catch(e)
+  {
+    goodJSON=false;
+    console.log("ERROR: invalid JSON in save file.");
+    write("<red>ERROR</red>: invalid JSON in save file. File not loaded.");
+  }
+  if(goodJSON)
+  {
+    write(uploadedJSON);
+    loadSaveData(uploadedJSON);
+  }
+  
+}
+
 function loadSaveData(saveStr)
 {
   /* deserialize JSON, set in-game buttons accordingly */

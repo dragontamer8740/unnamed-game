@@ -308,10 +308,22 @@ function setupScreen()
     },
     false
   );
-
+  
   /* to be implemented: load from file. I'm getting tired now and manipulating
      user-supplied files in Javascript isn't looking very fun.
-   */
+  */
+  /* "Save to File" button functionality. See gameState.js */
+  document.getElementById("loadFile").addEventListener(
+    "click",
+    function(){
+      document.getElementById("upload").click();
+    },
+    false
+  );
+
+
+
+  
 }
 /*  {
     element: document.getElementById("btn0"),
