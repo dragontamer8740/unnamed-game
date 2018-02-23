@@ -308,14 +308,20 @@ function setupScreen()
     },
     false
   );
-  
-  /* to be implemented: load from file. I'm getting tired now and manipulating
-     user-supplied files in Javascript isn't looking very fun.
-  */
-  /* "Save to File" button functionality. See gameState.js */
+
+  /* "Load from File" button functionality. See gameState.js */
   document.getElementById("loadFile").addEventListener(
     "click",
     function(){
+      /* If you aren't a web dev, this is probably deep magic.
+         You should just ignore this stuff. File uploading is a
+         _mess_.
+       */
+
+      
+      /* reset to null first for simplicity */
+      document.getElementById("upload").value=null;
+      /* trigger in a roundabout way */
       document.getElementById("upload").click();
     },
     false
@@ -429,7 +435,6 @@ function setMarginWidth(paddingWidth)
 function settingsMenu()
 {
   /*
-     Don't let this function execute when it's already in the settings menu.
      this will be important once we are backing up the current game state for
      restoration when exiting the settings menu.
 
@@ -453,7 +458,6 @@ function settingsMenu()
   */
 
   hideAllButtons();
-  document.getElementById("settings").removeEventListener("click", settingsMenu, false);
   write("\n<b>Page margins:</b>");
   /* slider */
   append('\n<div class="slidecontainer" style="display:inline;"><input type="range" min="0" max="75" value="0" class="slider" id="myRange" style="display:inline;"></div><div style="display: inline;" id="marginValue"></div>');

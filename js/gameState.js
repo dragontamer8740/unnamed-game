@@ -189,7 +189,7 @@ function saveDataLocalStorage(slot)
 
 function loadDataLocalStorage(slot)
 {
-  loadSaveData( localStorage.getItem("slot"+slot.toString()) );
+  loadSaveData( localStorage.getItem("lance_slot"+slot.toString()) );
 }
 
 /* save file locally */
@@ -218,14 +218,17 @@ function saveDataToFile(slot)
 function loadDataFromFile()
 {
   var file=document.getElementById("upload");
-  var reader = new FileReader(); /* Ugh, I hate callbacks. */
-  reader.onload = function(e)
+  if(file.files[0])
   {
-    loadDataFromFilePt2(reader.result); /* I really hate callbacks. */
-  }
-  reader.readAsText(file.files[0]);
+    var reader = new FileReader(); /* Ugh, I hate callbacks. */
+    reader.onload = function(e)
+    {
+      loadDataFromFilePt2(reader.result); /* I really hate callbacks. */
+    }
+    reader.readAsText(file.files[0]);
   /* the callback up above calls loadDataFromFilePt2 whenever the file 
      is done being read. */
+  }
 }
 
 function loadDataFromFilePt2(uploadedJSON)
