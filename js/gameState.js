@@ -184,7 +184,7 @@ function saveDataLocalStorage(slot)
 {
   /* get save data as a JSON string, */
   /* store in "save slot" */
-  localStorage.setItem("slot" + slot.toString(), getSaveDataJSON());
+  localStorage.setItem("lance_slot" + slot.toString(), getSaveDataJSON());
 }
 
 function loadDataLocalStorage(slot)
