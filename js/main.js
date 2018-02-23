@@ -271,6 +271,7 @@ function setupScreen()
 
   /* Clear screen of 'please enable javascript' text */
   write("");
+  /* Populate combo box */
   var saveSelBtn = document.getElementById("saveSelect");
   var saveOpt1 = document.createElement("option");
   var saveOpt2 = document.createElement("option");
@@ -281,6 +282,36 @@ function setupScreen()
   saveSelBtn.add(saveOpt1, null);
   saveSelBtn.add(saveOpt2, null);
 
+  /* Save (to slot) button. See gameState.js */
+  document.getElementById("save").addEventListener(
+    "click",
+    function(){
+      saveDataLocalStorage(saveSelBtn.value);
+    },
+    false
+  );
+
+  /* Load (from slot) button. See gameState.js */
+  document.getElementById("load").addEventListener(
+    "click",
+    function(){
+      loadDataLocalStorage(saveSelBtn.value);
+    },
+    false
+  );
+
+  /* "Save to File" button functionality. See gameState.js */
+  document.getElementById("saveFile").addEventListener(
+    "click",
+    function(){
+      saveDataToFile(saveSelBtn.value);
+    },
+    false
+  );
+
+  /* to be implemented: load from file. I'm getting tired now and manipulating
+     user-supplied files in Javascript isn't looking very fun.
+   */
 }
 /*  {
     element: document.getElementById("btn0"),

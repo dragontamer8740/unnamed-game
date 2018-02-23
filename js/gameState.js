@@ -149,24 +149,73 @@ function setPlayerData(playerBackup)
       }
     }
   );
-  updateStatusBars(); /* since we're using privData directly */
+    updateStatusBars(); /* since we're using privData directly */
 }
 
-function saveData()
+function getSaveDataJSON(prettify=false)
 {
+  /* optional parameter: 'prettify.' When not given or
+     false, do not prettify JSON string (saves a bit of memory).
+     When true, make the JSON string more human-readable.
+  */
   /* gameObj is a kind of abstraction of the actual game which tidily contains
-     all of the things we need to keep track of. */
-  /* as of this writing, only tracks button state rather than everything */
+     all of the things we need to keep track of. It does not DIRECTLY mirror
+     the internal game data structure; rather, it acts as a 'proxy' object
+     which contains the values needed for the games' getters and setters
+     to work properly. It's a little hacky.
+  */
   var gameObj={
-    button: getGameButtons(),
-    gameText: JSON.parse(getGameTextBody()),
+    player: getPlayerData(),
     game: getGameData(),
-    player: getPlayerData()
+    button: getGameButtons(),
+    gameText: JSON.parse(getGameTextBody())
   }
-  return JSON.stringify(gameObj);
+  if(prettify==0)
+  {
+    return JSON.stringify(gameObj);
+  }
+  else
+  {
+    return JSON.stringify(gameObj,null,2);
+  }
 }
 
-function loadData(saveStr)
+function saveDataLocalStorage(slot)
+{
+  /* get save data as a JSON string, */
+  /* store in "save slot" */
+  localStorage.setItem("slot" + slot.toString(), getSaveDataJSON());
+}
+
+function loadDataLocalStorage(slot)
+{
+  loadSaveData( localStorage.getItem("slot"+slot.toString()) );
+}
+
+/* save file locally */
+function saveAs(filename, data) {
+  var blob = new Blob([data], {type: 'application/json'});
+  if(window.navigator.msSaveOrOpenBlob) {
+    window.navigator.msSaveBlob(blob, filename);
+  }
+  else{
+    var elem = window.document.createElement('a');
+    elem.href = window.URL.createObjectURL(blob);
+    elem.download = filename;
+    document.body.appendChild(elem);
+    elem.click();
+    document.body.removeChild(elem);
+    window.URL.revokeObjectURL(blob);
+  }
+}
+
+function saveDataToFile(slot)
+{
+  /* slot determines the suggested filename */
+  saveAs("slot"+slot.toString() + ".json",getSaveDataJSON(true) + "\n");
+}
+
+function loadSaveData(saveStr)
 {
   /* deserialize JSON, set in-game buttons accordingly */
   var gameObj = JSON.parse(saveStr);
