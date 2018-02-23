@@ -193,7 +193,7 @@ input {
 }
 button, select{
   font-family: "URW Bookman L";
-  font-size: 100%;
+/*  font-size: 100%;*/
   background-color: #3A8C71;
   color: white;
   text-shadow: 1px 1px black;
