@@ -377,6 +377,7 @@ popOverContainer{
   height: 100%;
   margin: 0px;
   white-space: pre-wrap;
+  word-wrap: break-word;
   font-family: "Lucida Console", Monaco, monospace;
   font-size: 12pt;
   overflow-y: scroll;

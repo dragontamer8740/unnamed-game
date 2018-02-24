@@ -253,6 +253,8 @@ function loadDataFromFilePt2(uploadedJSON)
 
 function loadSaveData(saveStr)
 {
+  /* load a state from JSON */
+  console.log(saveStr.toString());
   /* deserialize JSON, set in-game buttons accordingly */
   var gameObj = JSON.parse(saveStr);
   /* restore button states */

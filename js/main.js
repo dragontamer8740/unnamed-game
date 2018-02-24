@@ -25,10 +25,11 @@
  * documentation and lore as well as executing arbitrary javascript.
  * Hacker-friendly is my policy!
  */
-var popOver;
+var popOver="";
 var shell;
 var closeShellBtn;
 var shellInput;
+var lastState=[]; /* for more convenient exiting of menus ('back a page' buttons)*/
 function shellClear() {
   /* erase shell output */
   shell.innerHTML=""
@@ -84,6 +85,8 @@ function hideShell()
   }
 }*/
 
+/* keybinds */
+/* prevent action on keydown */
 window.onkeydown = function(event) {
   /*
    *  'which' works in FF, 'keyCode' works elsewhere. I'd use 'event.key'
@@ -97,13 +100,86 @@ window.onkeydown = function(event) {
     event.preventDefault();
   }
 }
-
+/* Do custom action on keyup */
 window.onkeyup = function(event) {
-  var key = event.which || event.keyCode;
-  if(key==120)
+  var key=event.which||event.keyCode; /* two checks needed for compatibility */
+  if(key==120) /* this procs whether or not the input focus is in a text
+                * field */
   {
     event.preventDefault();
     toggleJSCon();
+  }
+  else if(document.activeElement.tagName != "INPUT" && popOver.style.display!="block")
+  { /* other key shortcuts only work when we aren't in an input box
+     * and the built-in console isn't active.
+     */
+    switch(key)
+    {
+      /* top button row
+       * requires QWERTY to behave sensibly, sorry.
+       * a US keyboard is assumed, but I think it will work for others
+       * as well. */
+      case 49: /* 1 */
+        event.preventDefault();
+        button[0].element.click();
+      break;
+
+      case 50: /* 2 */
+        event.preventDefault();
+        button[1].element.click();
+      break;
+
+      case 51: /* 3 */
+        event.preventDefault();
+        button[2].element.click();
+      break;
+
+      case 52: /* 4 */
+        event.preventDefault();
+        button[3].element.click();
+      break;
+
+      case 53: /* 5 */
+        event.preventDefault();
+        button[4].element.click();
+      break;
+
+      case 54: /* 6 */
+        event.preventDefault();
+        button[5].element.click();
+      break;
+
+      /* bottom button row */
+      case 81: /* q */
+        event.preventDefault();
+        button[6].element.click();
+      break;
+
+      case 87: /* w */
+        event.preventDefault();
+        button[7].element.click();
+      break;
+
+      case 69: /* e */
+        event.preventDefault();
+        button[8].element.click();
+      break;
+
+      case 82: /* r */
+        event.preventDefault();
+        button[9].element.click();
+      break;
+
+      case 84: /* t */
+        event.preventDefault();
+        button[10].element.click();
+      break;
+
+      case 89: /* y */
+        event.preventDefault();
+        button[11].element.click();
+      break;
+    }
   }
 }
 
@@ -197,16 +273,34 @@ function makeButtons() /* Called by main() right after setupScreen(). */
         }
       }
     }
-      button[i] = tempButton;
-  }
+    button[i] = tempButton;
+    /*    button[i].element.addEventListener("click", function(){eval(button[j].func)}, false);*/
 
+    /* Add event listeners for button clicks (which evaluate the expressions
+       stored as a string in button[i].func) */
+
+  }
 }
 
+/* Gentlemen, I present the eval(). Please suggest alternatives if you've got better ones. */
+function doButtonAction(num)
+{
+  eval(button[num].func);
+}
 
+function bindButtons()
+{
+  var i=0;
+  while(i<=11)
+  {
+    /* FIXME: sorry, I know I shouldn't need this eval, but I'm having a lot of trouble preventing
+       this loop from binding all buttons to button 11's action. */
+    eval("button[" + i.toString() + "].element.addEventListener(\"click\", function(){doButtonAction(" + i.toString() + ")}, false);");
+    i++;
+  }
+}
 
-/*var button = []; *//* GLOBAL VARIABLE MUAHAHA. Contains button objects populated by setupScreen(). */
-  /* populate button array with button objects */
-
+/* populate button array with button objects */
 function setupScreen()
 {
   popOver=document.getElementById("textConsole");
@@ -363,10 +457,11 @@ function appendImg(str)
   $().innerHTML+=str;
 }
 
+
 function hideAllButtons()
 {
   var i=0;
-  while(i<11)
+  while(i<12)
   {
     button[i].visible = false;
     i++;
@@ -457,6 +552,10 @@ function settingsMenu()
         |--vis    :   visibility ("display: none;" for instance)
   */
 
+  /* backup game state */
+  lastState[0]=getSaveDataJSON(); /* save to a global variable we can pull from */
+
+  
   hideAllButtons();
   write("\n<b>Page margins:</b>");
   /* slider */
@@ -482,6 +581,13 @@ function settingsMenu()
     sliderValueField.innerHTML="<b>" + val + "</b>"
     setMarginWidth(val);
   }
+
+  button[5].visible = true;
+  button[5].label="Back";
+  console.log(lastState);
+  /* FIXME: I _really_ need to find some better way to store a "link" to a function in a
+     serializable (saveable) way. */
+  button[5].func="loadSaveData(lastState[0])"; /* restore last state on 'back' button */
 }
 
 function fullScreen()
@@ -537,15 +643,17 @@ function mainMenu()
   appendImg("img/test.png");
   append("\n\nTesting some text effects!\n<b>BAM</b>\n<i>Pow!</i>\n<red>Zoom!</red> <blue>fizz!</blue>\n<yellow>Snap!</yellow> <orange>Crackle!</orange> <pink>Pop!</pink>(tm)\n<b><i><purple>SMAAAASH!</purple></i></b>\n<white>If you can read this, you don't need glasses.</white>");
   button[0].visible = true;
-  button[0].enabled = true;
   button[0].label = "New Game";
+  button[0].func="gameStart();";
 }
 
 function main()
 {
   setupScreen(); /* initialize stuff. Sets up keybindings, shell (console),
-                      save slot dropdown menu. */
+                    save slot dropdown menu. */
   makeButtons(); /* create main game button objects */
+  bindButtons(); /* some ugly hacks to bind buttons to button[x].func strings
+                    eval'd into function calls. PLEASE SUGGEST ALTERNATIVES */
   mainMenu();    /* Main menu screen */
   updateStatusBars();
 }

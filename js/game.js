@@ -26,4 +26,16 @@ var game = {
   gameFlags: {
     /* game flags go here */
   },
+  hotKeysDisabled: false /* used to prevent 123456 and qwerty hotkeys from
+                            interfering when text inputs are active */
 };
+
+function gameStart()
+{
+  /* start a new game */
+  button[0].visible=true;
+  button[0].label="Main Menu";
+  button[0].func="mainMenu();";
+  write("Hello, and welcome to the world of POKEMON!");
+  append("\nHaha, not really. This is a placeholder.\nReal intro stuff will go here.");
+}
