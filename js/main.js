@@ -637,11 +637,7 @@ function mainMenu()
 {
   write("<center><b>The Unnamed Game</b></center>");
   append('\nSource code is at: <a href="https://github.com/dragontamer8740/unnamed-game">https://github.com/dragontamer8740/unnamed-game</a>');
-  append("\nHello world! This text was generated and placed by Javascript! :O ...well, it's a start, anyway. Now I technically have a backend and can write arbitrary text to the main output form. And look, it even wraps!\nNewlines work too!\n    And indentation as well!\n\n<div style='text-decoration: line-through; display: inline;'>Now if only I could find a nicer color scheme for legibility that wasn't black on white or white on black.</div> NEVER MIND, I found one, I think!\nAll of this output so far was printed with the write() function!");
-  append("\nThis text was appended with a separate function intended for tacking on strings: append()!")
-  append("\n\nTesting images:\n");
-  appendImg("img/test.png");
-  append("\n\nTesting some text effects!\n<b>BAM</b>\n<i>Pow!</i>\n<red>Zoom!</red> <blue>fizz!</blue>\n<yellow>Snap!</yellow> <orange>Crackle!</orange> <pink>Pop!</pink>(tm)\n<b><i><purple>SMAAAASH!</purple></i></b>\n<white>If you can read this, you don't need glasses.</white>");
+  append("\n\nDemo'ing buttons!\n Saving works too, even though there's not anything interesting to save yet.\nAlso I added keybindings for the button rows! :D - 123456 for the top row, qwerty for the bottom.");
   button[0].visible = true;
   button[0].label = "New Game";
   button[0].func="gameStart();";
