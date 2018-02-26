@@ -23,7 +23,7 @@
          don't like the game zooming in on mobile devices. -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Unnamed Game</title>
-    <link rel="stylesheet" href="css/style01.css"></link>
+    <link rel="stylesheet" href="css/style01.css">
     <link rel="icon" href="img/favicon-16.png" type="image/png" sizes="16x16">
     <script src="js/main.js"></script>
     <!-- Page setup stuff. Also initializes the game and has main loop. -->
@@ -38,7 +38,7 @@
     <!-- we are using a custom upload button which triggers this form via a
          javascript-generated click event for uploading saves. -->
     <input type="file" id="upload" style="display:none" onchange="loadDataFromFile()">
-    <div class="container" id="container" allowfullscreen="true">
+    <div class="container" id="container">
       <nav class="nav leftBar">
         <div id="leftBarTop">
           <div id="playerName">Namey McNamerson</div>
@@ -48,28 +48,28 @@
             STATS
           </div>
           <!-- HP bar -->
-            <svg class="statBar" id="HPBar" viewBox="0 0 100 14"><rect class="bar" height="100%"/><text class="barStr"  x="1" y="80%">HP</text><text class="barNum" x="99" y="80%" font-size="smaller" fill="black">Num</text></svg>
+            <svg class="statBar" id="HPBar" viewBox="0 0 100 14"><rect class="bar" width="100%" height="100%"/><text class="barStr"  x="1" y="80%">HP</text><text class="barNum" x="99" y="80%" font-size="smaller" fill="black">Num</text></svg>
           <br/>
           <!-- Strength bar -->
-          <svg class="statBar" id="StrBar" viewBox="0 0 100 14"><rect class="bar" height="100%"/><text class="barStr" x="1" y="80%">STR</text><text class="barNum" x="99" y="80%" font-size="smaller" fill="black">Num</text></svg>
+          <svg class="statBar" id="StrBar" viewBox="0 0 100 14"><rect class="bar" width="100%" height="100%"/><text class="barStr" x="1" y="80%">STR</text><text class="barNum" x="99" y="80%" font-size="smaller" fill="black">Num</text></svg>
           <br/>
           <!-- Accuracy bar -->
-          <svg class="statBar" id="AccBar" viewBox="0 0 100 14"><rect class="bar" height="100%"/><text class="barStr" x="1" y="80%">ACC</text><text class="barNum" x="99" y="80%" font-size="smaller" fill="black">Num</text></svg>
+          <svg class="statBar" id="AccBar" viewBox="0 0 100 14"><rect class="bar" width="100%" height="100%"/><text class="barStr" x="1" y="80%">ACC</text><text class="barNum" x="99" y="80%" font-size="smaller" fill="black">Num</text></svg>
           <br/>
           <!-- Defense bar -->
-          <svg class="statBar" id="DefBar" viewBox="0 0 100 14"><rect class="bar" height="100%"/><text class="barStr" x="1" y="80%">DEF</text><text class="barNum" x="99" y="80%" font-size="smaller" fill="black">Num</text></svg>
+          <svg class="statBar" id="DefBar" viewBox="0 0 100 14"><rect class="bar" width="100%" height="100%"/><text class="barStr" x="1" y="80%">DEF</text><text class="barNum" x="99" y="80%" font-size="smaller" fill="black">Num</text></svg>
           <br/>
           <!-- Intelligence bar -->
-          <svg class="statBar" id="IntBar" viewBox="0 0 100 14"><rect class="bar" height="100%"/><text class="barStr" x="1" y="80%">INT</text><text class="barNum" x="99" y="80%" font-size="smaller" fill="black">Num</text></svg>
+          <svg class="statBar" id="IntBar" viewBox="0 0 100 14"><rect class="bar" width="100%" height="100%"/><text class="barStr" x="1" y="80%">INT</text><text class="barNum" x="99" y="80%" font-size="smaller" fill="black">Num</text></svg>
           <br/>
           <!-- Experience Points bar -->
-          <svg class="statBar" id="expBar" viewBox="0 0 100 14"><rect class="bar" height="100%"/><text class="barStr" x="1" y="80%">EXP</text><text class="barNum" x="99" y="80%" font-size="smaller" fill="black">Num/Num</text></svg>
+          <svg class="statBar" id="expBar" viewBox="0 0 100 14"><rect class="bar" width="100%" height="100%"/><text class="barStr" x="1" y="80%">EXP</text><text class="barNum" x="99" y="80%" font-size="smaller" fill="black">Num/Num</text></svg>
           <br/>
           <div class="nonBarStats">
-            Level: <div class="rightColDataField" id="levelField"=></div>
+            Level: <div class="rightColDataField" id="levelField"></div>
           </div>
           <div class="nonBarStats">
-            Zorkmids: <div class="rightColDataField" id="moneyField"=></div>
+            Zorkmids: <div class="rightColDataField" id="moneyField"></div>
           </div>
           <br/>
           <button type="button" id="btnFullScreen" class="sideBarBtn">Full Screen</button>
@@ -165,7 +165,7 @@ I'm interested to know what you did I and hope that it's because Netsurf is comi
     </div>
     <div id="textConsole" class="popOverBg">
       <!-- Modal content -->
-      <popOverContainer>
+      <div id="popOverContainer">
         <div class="textConsole-content">
           <div> <!-- top bar for console -->
             <span id="shellTitle">Eval() Console</span>
@@ -176,7 +176,7 @@ I'm interested to know what you did I and hope that it's because Netsurf is comi
           <br/>
         </div>
         <input id="textConsole-inputLine" type="text" name="shellCmd">
-      </popOverContainer>
+      </div>
     </div>
   </body>
 </html>
