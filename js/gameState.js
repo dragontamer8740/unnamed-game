@@ -71,6 +71,40 @@ function getGameTextBody()
   return JSON.stringify($().innerHTML)
 }
 
+/* NEW, UNIVERSAL function for deep copying objects */
+function deepCopyObj(obj, dest){
+  /* copy from an object into an object for backing up recursively*/
+  /* you will want to specify the privData sub-object or bad things might
+     happen (overwriting getters/setters and member functions).
+     you would do this like so:
+     deepCopyObj(obj.privData, dest);
+     In my code, privData objects should NEVER contain
+     non-JSON-serializable data anywhere under them.
+  */
+  var list=Object.keys(obj);
+  var i=0;
+  while(i<list.length)
+  {
+    element=list[i];
+    {
+      if((typeof obj[element])==="object")
+      {
+        /* RECURSION */
+        /* create a new object in destination for writing to */
+        dest[element]={};
+        deepCopyObj(obj[element], dest[element]);
+      }
+        else
+      {
+        dest[element]=obj[element];
+      }
+    }
+    i++; /* do next element until we're done */
+  }
+  return dest;
+}
+
+
 function getGameData() /* game.js game object data */
 {
   /* getters aren't impacted if you try to write over them (e.g., write 5 to
@@ -120,7 +154,33 @@ function getPlayerData()
   Object.keys(player.stats.privData).forEach(
     function(element)
     {
-      playerBackup["stats"][element]=player.stats.privData[element];
+      playerBackup.stats[element]=player.stats.privData[element];
+    }
+  );
+
+  
+  /* playerBackup also has to store body attributes */
+  playerBackup["body"]={};
+  Object.keys(player.body.privData).forEach(
+    function(element)
+    {
+      if((typeof element)==="object") /* e.g. 'head', 'arms' */
+      {
+        /* copy body part attributes (e.g. go down another level) */
+        playerBackup.body[element]={};
+        Object.keys(player.body.privData[element]).forEach(
+          function(element2)
+          {
+            playerBackup.body[element][element2]=player.body.privData[element][element2];
+          }
+        );
+      }
+      else /* if privData.item is not an object
+              but rather a primitive/string/other copy-able element */
+      {
+        /* copy */
+        playerBackup.body[element]=player.body.privData[element];
+      }   
     }
   );
   return playerBackup;

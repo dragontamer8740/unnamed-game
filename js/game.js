@@ -38,4 +38,9 @@ function gameStart()
   button[0].func="mainMenu();";
   write("Hello, and welcome to the world of POKEMON!");
   append("\nHaha, not really. This is a placeholder.\nReal intro stuff will go here.");
+
+  /* give the player a cock */
+  player.body.cocks[0]=templates.cock;
+  /* give the player a flat chest */
+  player.body.breastRows[0]=templates.breastRow;
 }

@@ -390,6 +390,10 @@ function setupScreen()
     "click",
     function(){
       loadDataLocalStorage(saveSelBtn.value);
+      /* probably need to error check this? We'll see.
+         It's been a while since I worked on this codebase: */
+      allowSaving();
+      document.getElementById("settings").disabled=false;
     },
     false
   );
@@ -411,12 +415,15 @@ function setupScreen()
          You should just ignore this stuff. File uploading is a
          _mess_.
        */
-
       
       /* reset to null first for simplicity */
       document.getElementById("upload").value=null;
       /* trigger in a roundabout way */
       document.getElementById("upload").click();
+      /* probably need to error check this? We'll see.
+         It's been a while since I worked on this codebase: */
+      allowSaving();
+      document.getElementById("settings").disabled=false;
     },
     false
   );
@@ -466,6 +473,18 @@ function hideAllButtons()
     button[i].visible = false;
     i++;
   }
+}
+
+function disallowSaving()
+{
+  document.getElementById("save").disabled=true;
+  document.getElementById("saveFile").disabled=true;
+}
+
+function allowSaving()
+{
+  document.getElementById("save").disabled=false;
+  document.getElementById("saveFile").disabled=false;
 }
 
 function updateStatusBars() /* refresh status bars with current values */
@@ -555,6 +574,13 @@ function settingsMenu()
   /* backup game state */
   lastState[0]=getSaveDataJSON(); /* save to a global variable we can pull from */
 
+  /* gray out save buttons. Restoring the game from the settings menu will
+     probably result in Bad Things. */
+  disallowSaving();
+  /* gray out settings button so it can't be pressed twice and cause the
+     'last screen' to be the settings screen (this would make the game lose
+     it's state, were it to happen.) */
+  document.getElementById("settings").disabled=true;
   
   hideAllButtons();
   write("\n<b>Page margins:</b>");
@@ -587,7 +613,7 @@ function settingsMenu()
   console.log(lastState);
   /* FIXME: I _really_ need to find some better way to store a "link" to a function in a
      serializable (saveable) way. */
-  button[5].func="loadSaveData(lastState[0])"; /* restore last state on 'back' button */
+  button[5].func="loadSaveData(lastState[0]); allowSaving(); document.getElementById(\"settings\").disabled=false;"; /* restore last state on 'back' button */
 }
 
 function fullScreen()
@@ -615,7 +641,7 @@ function fullScreen()
       pageElement.msRequestFullscreen();
     }
   }
-  else /* if not already in full screen: */
+ else /* if not already in full screen: */
   {
     if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -635,6 +661,8 @@ function fullScreen()
 
 function mainMenu()
 {
+  allowSaving()
+  document.getElementById("settings").disabled=false;
   write("<center><b>The Unnamed Game</b></center>");
   append('\nSource code is at: <a href="https://github.com/dragontamer8740/unnamed-game">https://github.com/dragontamer8740/unnamed-game</a>');
   append("\n\nDemo'ing buttons!\n Settings menu can now be returned from. Saving works too, even though there's not anything interesting to save yet.\nAlso I added keybindings for the button rows! :D - 123456 for the top row, qwerty for the bottom.");

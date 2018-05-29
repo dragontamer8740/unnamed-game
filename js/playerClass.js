@@ -32,6 +32,7 @@ var player = {
     sex:       "N",
     gender:    "N",
     money:     400
+    
   },
   /* Documentation: doc/playerClass.txt */
   get name() {
@@ -156,6 +157,93 @@ var player = {
       /* To start, I'm just gonna say that levelling takes
          (your current level times 100) XP. Level 1: 100xp, 2: 200xp, etc. */
       return (parseInt(this.level) * 100);
+    },
+  },
+  body:   {
+    privData: {
+      /* body type ID's are stored somewhere else (to be done).
+       * type 0 is human.
+       */
+      head: {
+        type: 0,
+        horns: 0,
+        
+      },
+      arms: {
+        type: 0,
+      },
+      hands: {
+        type: 0,
+      },
+      torso: {
+        type: 0,
+      },
+      legs: {
+        type: 0,
+      },
+      feet: {
+        type: 0,
+      },
+      breastRows: [],
+        /* Inserted on game start. Template in objTemplates.js. */
+      cocks: [],
+        /* can be multiple cocks. Inserted on game start. Template in objTemplates.js. */
+      vag: [],
+        /* same as cocks */
+    },
+    get head() {
+      return this.privData.head;
+    },
+    get arms() {
+      return this.privData.arms;
+    },
+    get hands() {
+      return this.privData.hands;
+    },
+    get torso() {
+      return this.privData.torso;
+    },
+    get legs() {
+      return this.privData.legs;
+    },
+    get feet() {
+      return this.privData.feet;
+    },
+    get breastRows() {
+      return this.privData.breastRows;
+    },
+    get cocks()
+    {
+      return this.privData.cocks;
+    },
+    get allCocks() { /* includes dicknipples, tail-cocks, whatever */
+      /* make temporary object, add normal cocks to it right away */
+      var rtn=[];
+      /* loop through cocks */
+      var i=0;
+      while(i<this.privData.cocks.length)
+      {
+        rtn[i]=this.privData.cocks[i];
+        i++;
+      }
+      /* add dicknipples to cocks */
+      /* iterate through breast rows, find if any dicknipples are present. */
+      var j=0; /* j is for iterating through breast rows. i contains the value to insert
+                  the first dicknipple row at */
+      while(j<this.privData.breastRows)
+      {
+        if(this.privData.breastRows[j].nipples.type==1)
+        {
+          rtn[i]=this.privData.breastRows[j].nipples.cock;
+          rtn[i].row=j; /* add a field stating which breast row these dicknipples are on to our output */
+          i++;
+        }
+        j++;
+      }
+      return rtn;
+    },
+    get vag() {
+      return this.privData.vag;
     },
   },
 };
