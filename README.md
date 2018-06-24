@@ -18,19 +18,19 @@ who uses Javascript to contribute to (no need to learn node, which is basically
 another language).
 
 The tradeoff here is that it currently doesn't render properly in
-Microsoft Internet Explorer 11 or "Edge." Edge is nearly there, but it fails to
-properly render right-aligned text in SVG graphics I'm using for status bars.
-IE 11 fails miserably.
+Microsoft Internet Explorer 11 or "Edge." Edge is *nearly* there, but it fails
+to properly render right-aligned text in SVG graphics I'm using for status
+bars.
+IE 11 fails miserably, as is to be expected.
 
 It works best in and is primarily developed targetting Firefox and related
 (gecko-based) browsers such as Seamonkey, Pale Moon, and Waterfox. It should
 be functional in Chrome/Chromium and other Blink-based browsers like Opera, too.
 
-It is not yet tested in newer versions of normal WebKit (Safari), but that will
-change once WebKitGTK is finished compiling here. All I can say for now is that
-it definitely doesn't render properly in the version of Safari shipped with iOS
-8 or Safari 6.0.5 (OS X Mountain Lion - 10.8), but it works fine in Android
-Firefox and Chrome/Chromium.
+It is not yet tested in newer versions of normal WebKit (Safari), but it works
+in WebkitGTK, so *very modern* versions of Safari should theoretically work.
+
+It works fine in Android Firefox and Chrome/Chromium.
 
 If it works well in newer Safari, it should also render in all other
 browsers on iOS, since Apple forces them all to use its WebKit engine.
