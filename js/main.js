@@ -664,7 +664,7 @@ function mainMenu()
   allowSaving()
   document.getElementById("settings").disabled=false;
   write("<center><b>The Unnamed Game</b></center>");
-  append('\nSource code is at: <a href="https://github.com/dragontamer8740/unnamed-game">https://github.com/dragontamer8740/unnamed-game</a>');
+  append('\nSource code is at: <a href="https://gitlab.com/dragontamer8740/unnamed-game">https://gitlab.com/dragontamer8740/unnamed-game</a>');
   append("\n\nDemo'ing buttons!\n Settings menu can now be returned from. Saving works too, even though there's not anything interesting to save yet.\nAlso I added keybindings for the button rows! :D - 123456 for the top row, qwerty for the bottom.");
   append("\n<img src='img/test.png'>");
   button[0].visible = true;
