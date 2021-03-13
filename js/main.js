@@ -104,7 +104,7 @@ window.onkeydown = function(event) {
 window.onkeyup = function(event) {
   var key=event.which||event.keyCode; /* two checks needed for compatibility */
   if(key==120) /* this procs whether or not the input focus is in a text
-                * field */
+                * field. Binding: F9 */
   {
     event.preventDefault();
     toggleJSCon();
@@ -215,16 +215,18 @@ function makeButtons() /* Called by main() right after setupScreen(). */
         if(val==false)
         {
           this.element.style["display"]="none";
-          /* we can't just use the 'enabled' getter here because it makes
-             this recursive */
-          this.element.disabled=!val;
+          /* we won't just use the 'enabled' getter here because it makes
+             this recursive and I don't like that for legibility */
+          /* this.element.disabled=!val; */
+          this.enabled=val;
         }
         else if(val==true)
         {
           /* making a button visible like this always will make it enabled.
              this is why the 'enabled' setter should be used instead.*/
           this.element.style["display"]="inline";
-          this.element.disabled=!val;
+          /*this.element.disabled=!val;*/
+          this.enabled=val;
         }
         else
         {
@@ -252,25 +254,11 @@ function makeButtons() /* Called by main() right after setupScreen(). */
           console.log("Passing a non-true/false value to setEnabled()! - Button number: " + this.num);
         }
       },
-      get enabled() {
-        if(this.element.disabled != undefined && this.element.disabled != false)
-        {
-          return false;
-        }
-        else
-        {
-          return true;
-        }
+      get enabled() { // true when NOT disabled (!) and IS visible
+        return !(this.element.disabled == undefined || this.element.disabled == true) && this.visible;
       },
       get visible() {
-        if(this.element.style["display"] == "none" || this.element.style["display"] == "")
-        {
-          return false;
-        }
-        else
-        {
-          return true;
-        }
+        return (this.element.style["display"] != "none" && this.element.style["display"] != "");
       }
     }
     button[i] = tempButton;
