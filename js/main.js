@@ -588,7 +588,7 @@ function settingsMenu()
   append('\n<div class="slidecontainer" style="display:inline;"><input type="range" min="0" max="75" value="0" class="slider" id="marginRange" style="display:inline;"></div><div style="display: inline;" id="marginValue"></div>');
   /* dynamically set the slider's starting position to the currently set margin size */
 /*  append('" class="slider" id="myRange" style="display:inline;"></div><div style="display: inline;" id="marginValue"></div>');*/
-  append('\nSome devices (like phones) often have rounded corners on their screens which will be result in cropping the game when in full-screen. Use this to set margins past the beginning of the curve to avoid this.');
+  append('\nSome devices (like phones) often have rounded corners on their screens which will result in cropping the corners of the game when in full-screen. Use this to set margins past the beginning of the curve to avoid this.');
   var slider=document.getElementById("marginRange");
   var sliderValueField=document.getElementById("marginValue");
   var margins=document.getElementById("container");
